@@ -25,10 +25,7 @@ public class WelcomeController {
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
     }
-//
-//    public WelcomeController(StudentRepository studentRepository) {
-//        this.studentRepository = studentRepository;
-//    }
+
 
     @RequestMapping("/")
     public String index(Model model) {
