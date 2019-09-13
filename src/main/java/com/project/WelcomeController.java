@@ -30,6 +30,7 @@ public class WelcomeController {
 //        this.studentRepository = studentRepository;
 //    }
 
+
     @RequestMapping("/")
     public String index(Model model) {
 //        User newUser = new User("helloworld11", "helloworld", UserType.PROFESSOR, UserStatus.ACTIVE);
