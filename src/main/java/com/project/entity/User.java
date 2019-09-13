@@ -1,17 +1,35 @@
 package com.project.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private int userID;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
-    private String userType;
-    private String userStatus;
+
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="user_type")
+    private UserType userType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="status")
+    private UserStatus userStatus;
 
     public User(){
     }
 
-    public User(String username, String password, String userType, String userStatus) {
+    public User(String username, String password, UserType userType, UserStatus userStatus) {
         this.username = username;
         this.password = password;
         this.userType = userType;
@@ -42,19 +60,30 @@ public class User {
         this.password = password;
     }
 
-    public String getUserType() {
+    public UserType getUserType() {
         return userType;
     }
 
-    public void setUserType(String userType) {
+    public void setUserType(UserType userType) {
         this.userType = userType;
     }
 
-    public String getUserStatus() {
+    public UserStatus getUserStatus() {
         return userStatus;
     }
 
-    public void setUserStatus(String userStatus) {
+    public void setUserStatus(UserStatus userStatus) {
         this.userStatus = userStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", userType='" + userType + '\'' +
+                ", userStatus='" + userStatus + '\'' +
+                '}';
     }
 }
