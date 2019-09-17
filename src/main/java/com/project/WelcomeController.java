@@ -1,7 +1,5 @@
 package com.project;
 
-import com.project.entity.Course;
-import com.project.entity.Student;
 import com.project.repository.CourseRepository;
 import com.project.repository.StudentRepository;
 import com.project.repository.UserRepository;
@@ -33,14 +31,12 @@ public class WelcomeController {
 
     @RequestMapping("/")
     public String index(Model model) {
-        Course course = courseRepository.findByCourseTitleLike("Spring%");
-        Student student = studentRepository.findById(5).orElse(null);
-        assert student != null;
-        student.getCourses().add(course);
-        studentRepository.save(student);
-        StringBuilder response = new StringBuilder();
-        this.studentRepository.findAll().forEach(a -> response.append(a).append("<br/>"));
-        model.addAttribute("response", response);
+//        Course course = courseRepository.findByCourseTitleLike("Spring%");
+//        Student student = studentRepository.findById(5).orElse(null);
+//        assert student != null;
+//        student.getCourses().add(course);
+//        studentRepository.save(student);
+        model.addAttribute("students", this.studentRepository.findAll());
         return "index";
     }
 }
