@@ -1,4 +1,5 @@
 <%@page language="java" contentType="text/html" %>
+<%@taglib prefix="c" uri="http://www.springframework.org/tags" %>
 <!doctype html>
 <html lang="en">
 <head>
