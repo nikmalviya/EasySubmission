@@ -1,12 +1,26 @@
 package com.project.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "submissions")
 public class Submission {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "submission_id")
     private int submissionID;
+    //Remaining
     private Assignment assignment;
+    //Remaining
+    @ManyToOne
     private Subject subject;
+    @ManyToOne
     private Student student;
+    @Column(name = "status")
     private String status;
+    @Column(name = "makrs")
     private Float marks;
+    @Column(name = "file_path")
     private String filePath;
 
     public Submission(){

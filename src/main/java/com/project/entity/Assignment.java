@@ -1,16 +1,29 @@
 package com.project.entity;
 
+import javax.persistence.*;
 import java.util.Date;
-
+@Entity
+@Table(name = "assignments")
 public class Assignment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "assignment_id")
     private int assignmentID;
+    @Column(name = "assignment_title")
     private String assignmentTitle;
+    @Column(name="posted_date")
     private Date postedDate;
+    @Column(name = "deadline_date")
     private Date deadlineDate;
+    @ManyToOne
+    //remaining
     private Subject subject;
+    @Column(name = "status")
     private String status;
+    @Column(name = "notes")
     private String notes;
+    @Column(name = "file_path")
     private String filePath;
 
     public Assignment(){
