@@ -1,18 +1,41 @@
 package com.project.entity;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+@Entity
+@Table(name = "assignments")
 public class Assignment {
-
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "assignment_id")
     private int assignmentID;
+    @Column(name = "assignment_title")
     private String assignmentTitle;
-    private Date postedDate;
-    private Date deadlineDate;
-    private Subject subject;
-    private String status;
-    private String notes;
-    private String filePath;
 
+    @Column(name="posted_date")
+    private Date postedDate;
+
+    @Column(name = "deadline_date")
+    private Date deadlineDate;
+
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
+
+    @Column(name = "status")
+    private String status;
+    @Column(name = "notes")
+    private String notes;
+    @Column(name = "file_path")
+    private String filePath;
+    @OneToMany(mappedBy = "assignment",cascade = {CascadeType.ALL})
+    private List<Question> questions;
+    @OneToMany(mappedBy = "assignment",cascade = CascadeType.ALL)
+    private List<Submission> submissions;
     public Assignment(){
     }
 
