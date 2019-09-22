@@ -1,10 +1,19 @@
 package com.project.entity;
 
-public class Question {
-    private int questionID;
-    private String questionText;
-    private Assignment assignment;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "questions")
+public class Question {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "question_id")
+    private int questionID;
+    @Column(name = "question_text")
+    private String questionText;
+    @ManyToOne
+    @JoinColumn(name = "assignment_id")
+    private Assignment assignment;
     public Question(String questionText, Assignment assignment) {
         this.questionText = questionText;
         this.assignment = assignment;

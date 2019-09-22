@@ -15,6 +15,14 @@ public class Course {
     @Column(name = "course_title", unique = true)
     private String courseTitle;
 
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
     @ManyToMany(cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,
@@ -26,6 +34,9 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
     private List<Student> students;
+
+    @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)
+    private List<Subject> subjects;
 
     public Course() {
     }

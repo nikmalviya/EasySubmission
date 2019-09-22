@@ -60,7 +60,7 @@ DROP TABLE IF EXISTS `professors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `professors` (
-  `professor_id` int(11) NOT NULL AUTO,
+  `professor_id` int(11) NOT NULL AUTO_INCREMENT,
   `professor_name` varchar(45) DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
   `contact_number` char(10) DEFAULT NULL,

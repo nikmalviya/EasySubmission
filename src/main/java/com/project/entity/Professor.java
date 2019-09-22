@@ -1,13 +1,24 @@
 package com.project.entity;
 
+import javax.persistence.*;
 import java.util.Date;
-
+@Entity
+@Table(name ="professors")
 public class Professor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "professor_id")
     private int professorID;
+    @Column(name = "professor_name")
     private String professorFullName;
+    @Column(name = "date_of_birth")
     private Date dateofBirth;
+    @Column(name = "contact_number")
     private String contactNumber;
+    @Column(name = "address")
     private String address;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Professor(){
