@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html" %>
-<%@taglib prefix="c" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="f" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,6 +13,13 @@
 <body>
 <h1>Hello world We Are Going to Start Our Project</h1>
 <h1> We are gonna Rock!!</h1>
-${response}
+<form action="/courses" method="post">
+    <input type="text" name="title"/>
+    <button type="submit">Submit</button>
+</form>
+<c:forEach items="${courses}" var="course">
+    <c:out value="Course ID : ${course.courseID}"/>
+    <c:out value="Course Name : ${course.courseTitle}"/>
+</c:forEach>
 </body>
 </html>

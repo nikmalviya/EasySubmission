@@ -1,16 +1,14 @@
 package com.project;
 
-import com.project.entity.*;
 import com.project.repository.*;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
+@RequestMapping("/")
 public class WelcomeController {
-
 
     private UserRepository userRepository;
     private StudentRepository studentRepository;

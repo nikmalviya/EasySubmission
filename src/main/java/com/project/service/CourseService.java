@@ -2,6 +2,7 @@ package com.project.service;
 
 import com.project.entity.Course;
 import com.project.repository.CourseRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class CourseService {
     }
 
     public List<Course> getCourseList(){
-        return this.courseRepository.findAll();
+        return this.courseRepository.findAll(Sort.by("courseID"));
     }
 
     public Course getCourse(int id){
