@@ -31,4 +31,7 @@ public class CourseService {
     public void deleteCourse(Course course){
         this.courseRepository.delete(course);
     }
+    public void deleteCourseById(int id){
+        this.courseRepository.deleteById(id);
+    }
 }

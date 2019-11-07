@@ -1,8 +1,6 @@
 <%@page language="java" contentType="text/html" %>
 <!DOCTYPE html>
 <%@include file="base-header.jsp" %>
-
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
