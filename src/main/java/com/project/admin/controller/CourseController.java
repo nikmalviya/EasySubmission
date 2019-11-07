@@ -23,14 +23,14 @@ public class CourseController {
     @GetMapping
     public String courses(Model model) {
         model.addAttribute("courses", courseService.getCourseList());
-        return "index";
+        return "courses";
     }
 
     @PostMapping
     public String saveCourse(Model model, HttpServletRequest request) {
         courseService.saveCourse(new Course(request.getParameter("title")));
         model.addAttribute("courses", courseService.getCourseList());
-        return "index";
+        return "courses";
     }
 
 }
