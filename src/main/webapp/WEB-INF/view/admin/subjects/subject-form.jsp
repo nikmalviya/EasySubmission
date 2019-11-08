@@ -36,13 +36,13 @@
                                 <i class="fas fa-minus"></i></button>
                         </div>
                     </div>
-                    <s:bind path="subjectTitle">
-                        <div class="card-body">
-                            <s:hasBindErrors name="subject">
-                                <c:if test="${not empty errors.globalError}">
-                                    <div class="alert alert-danger"><sform:errors/></div>
-                                </c:if>
-                            </s:hasBindErrors>
+                    <div class="card-body">
+                        <s:hasBindErrors name="subject">
+                            <c:if test="${not empty errors.globalError}">
+                                <div class="alert alert-danger"><sform:errors/></div>
+                            </c:if>
+                        </s:hasBindErrors>
+                        <s:bind path="subjectTitle">
                             <div class="form-group">
                                 <label for="subjectTitle" class="${status.error?'text-danger':''}">Subject Title</label>
                                 <sform:input path="subjectTitle"
@@ -50,27 +50,33 @@
                                 <c:if test="${status.error}">
                                     <small class="text-danger"><sform:errors path="subjectTitle"/></small>
                                 </c:if>
-
+                            </div>
+                        </s:bind>
+                        <s:bind path="courseId">
+                            <div class="form-group">
                                 <label for="courseId" class="${status.error?'text-danger':''}">Course</label>
-                                <sform:select path="courseId">
-                                    <sform:options items="${subject.courseOptions}"/>
+                                <sform:select path="courseId" cssClass="form-control">
+                                    <sform:options items="${subject.courseOptions}" />
                                 </sform:select>
-                                   <c:if test="${status.error}">
+                                <c:if test="${status.error}">
                                     <small class="text-danger"><sform:errors path="courseId"/></small>
                                 </c:if>
-                                <br/>
+                            </div>
+                        </s:bind>
+                        <s:bind path="professorId">
+                            <div class="form-group">
                                 <label for="professorId" class="${status.error?'text-danger':''}">Professor</label>
-                                <sform:select path="professorId">
-                                    <sform:options items="${subject.professorOptions}"/>
+                                <sform:select path="professorId" cssClass="form-control">
+                                    <sform:options items="${subject.professorOptions}" />
                                 </sform:select>
                                 <c:if test="${status.error}">
                                     <small class="text-danger"><sform:errors path="professorId"/></small>
                                 </c:if>
-
-
                             </div>
-                        </div>
-                    </s:bind>
+                        </s:bind>
+
+
+                    </div>
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
@@ -87,7 +93,7 @@
 <%@include file="../../base-footer.jsp" %>
 <script>
     $(function () {
-        
+
     })
 </script>
 </body>

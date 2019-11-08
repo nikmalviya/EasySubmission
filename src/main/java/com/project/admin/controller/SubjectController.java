@@ -22,14 +22,15 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("admin/subjects")
 public class SubjectController {
+
     final private SubjectService subjectService;
-    final private CourseService courseService;
+    final private  CourseService courseService;
     final private ProfessorService professorService;
 
-    SubjectController(SubjectService subjectService,CourseService courseService, ProfessorService professorService) {
+    public SubjectController(SubjectService subjectService, ProfessorService professorService, CourseService courseService) {
         this.subjectService = subjectService;
-        this.courseService=courseService;
-        this.professorService=professorService;
+        this.professorService = professorService;
+        this.courseService = courseService;
     }
 
     @InitBinder
@@ -49,25 +50,28 @@ public class SubjectController {
     @PostMapping(path = "/add")
     public String saveCourse(@Valid @ModelAttribute("subject") SubjectForm form, BindingResult result, Model model, RedirectAttributes attrs) {
         if (result.hasErrors()) {
+            model.addAttribute("updatemode", true);
             return "admin/subjects/subject-form";
         }
         try {
-
-            Course course=courseService.getCourse(form.getCourseId());
-            Professor professor=professorService.getProfessor(form.getProfessorId());
-            subjectService.saveSubject(new Subject(form.getSubjectTitle(),course,professor));
+            Course course = courseService.getCourse(form.getCourseId());
+            Professor professor = professorService.getProfessor(form.getProfessorId());
+            subjectService.saveSubject(new Subject(form.getSubjectTitle(), course, professor));
         } catch (DataIntegrityViolationException e) {
             ObjectError error = new ObjectError("already_exist_error", "Subject Already Exists..");
             result.addError(error);
             return "admin/subjects/subject-form";
         }
-        attrs.addFlashAttribute("success_message","Subject Added Successfully..");
+        attrs.addFlashAttribute("success_message", "Subject Added Successfully..");
         return "redirect:/admin/subjects";
     }
 
     @GetMapping(path = "/add")
     public String addSubjectForm(Model model) {
-        SubjectForm subject=new SubjectForm(courseService,professorService);
+        SubjectForm subject = new SubjectForm(
+                courseService.getCourseOptions(),
+                professorService.getProfessorOptions()
+        );
         model.addAttribute("subject", subject);
         return "admin/subjects/subject-form";
     }
@@ -75,9 +79,14 @@ public class SubjectController {
     @GetMapping(path = "/update/{id}/")
     public String updateSubjectForm(@PathVariable("id") int id, Model model) {
 //        System.out.println(courseId);
-        Subject subject=subjectService.getSubject(id);
-        SubjectForm subjectForm=new SubjectForm(courseService,professorService);
+        Subject subject = subjectService.getSubject(id);
+        SubjectForm subjectForm = new SubjectForm(
+                courseService.getCourseOptions(),
+                professorService.getProfessorOptions()
+        );
         subjectForm.setSubjectTitle(subject.getSubjectName());
+        subjectForm.setCourseId(subject.getCourse().getCourseID());
+        subjectForm.setProfessorId(subject.getProfessor().getProfessorID());
         model.addAttribute("subject", subjectForm);
         model.addAttribute("updatemode", true);
         model.addAttribute("id", String.valueOf(id));
@@ -87,12 +96,13 @@ public class SubjectController {
     @PostMapping("/update/{id}/")
     public String updateSubject(@Valid @ModelAttribute("subject") SubjectForm form, BindingResult result, @PathVariable("id") int id, Model model, RedirectAttributes attrs) {
         if (result.hasErrors()) {
+            model.addAttribute("updatemode", true);
             return "admin/subjects/subject-form";
         }
         try {
-            Course course=courseService.getCourse(form.getCourseId());
-            Professor professor=professorService.getProfessor(form.getProfessorId());
-            Subject subject=subjectService.getSubject(id);
+            Course course = courseService.getCourse(form.getCourseId());
+            Professor professor = professorService.getProfessor(form.getProfessorId());
+            Subject subject = subjectService.getSubject(id);
             subject.setSubjectName(form.getSubjectTitle());
             subject.setCourse(course);
             subject.setProfessor(professor);
@@ -103,7 +113,7 @@ public class SubjectController {
             model.addAttribute("updatemode", true);
             return "admin/subjects/subject-form";
         }
-        attrs.addFlashAttribute("success_message","Subject Updated Successfully..");
+        attrs.addFlashAttribute("success_message", "Subject Updated Successfully..");
         return "redirect:/admin/subjects";
     }
 
@@ -111,7 +121,7 @@ public class SubjectController {
     public String deleteSubject(@PathVariable("id") int id, RedirectAttributes attrs) {
         subjectService.deleteSubjectById(id);
 
-        attrs.addFlashAttribute("success_message","Subject Deleted Successfully...");
+        attrs.addFlashAttribute("success_message", "Subject Deleted Successfully...");
         return "redirect:/admin/subjects";
     }
 
