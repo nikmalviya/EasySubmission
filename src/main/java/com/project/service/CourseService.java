@@ -11,7 +11,6 @@ import java.util.List;
 
 @Service
 public class CourseService {
-    @Autowired
     private CourseRepository courseRepository;
 
     public CourseService() {
@@ -49,12 +48,10 @@ public class CourseService {
         this.courseRepository.deleteById(id);
     }
 
-    //function to get all courses in LinkedHashMap to directly link it with form:options tag
+    //function to get all courses as LinkedHashMap objects to directly link it with form:options tag
     public LinkedHashMap<Integer,String> getCourseOptions(){
         LinkedHashMap<Integer,String> courseOptions=new LinkedHashMap<>();
         List<Course> courses=this.getCourseList();
-        System.out.println("calling course Options from course service");
-        System.out.println(courses);
         courses.forEach(course -> courseOptions.put(course.getCourseID(),course.getCourseTitle()));
         return courseOptions;
     }
