@@ -6,6 +6,7 @@ import com.project.repository.ProfessorRepository;
 import com.project.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @Service
@@ -32,4 +33,14 @@ public class ProfessorService {
     public void deleteProfessor(Professor professor) {
         this.professorRepository.delete(professor);
     }
+
+    //function to get all courses in LinkedHashMap to directly link it with form:options tag
+    public LinkedHashMap<Integer,String> getProfessorOptions(){
+        LinkedHashMap<Integer,String> professorOptions=new LinkedHashMap<>();
+        List<Professor> professors=this.getProfessorList();
+        professors.forEach(professor -> professorOptions.put(professor.getProfessorID(),professor.getProfessorFullName()));
+        return professorOptions;
+    }
+
+
 }

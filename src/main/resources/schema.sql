@@ -149,7 +149,7 @@ DROP TABLE IF EXISTS `subjects`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `subjects` (
-  `subject_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL ,
   `subject_name` varchar(45) NOT NULL,
   `course_id` int(11) NOT NULL,
   `professor_id` int(11) NOT NULL,

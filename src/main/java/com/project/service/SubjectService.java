@@ -30,4 +30,8 @@ public class SubjectService {
     public void deleteSubject(Subject subject) {
         this.subjectRepository.delete(subject);
     }
+
+    public void deleteSubjectById(int id) {
+        this.subjectRepository.deleteById(id);
+    }
 }
