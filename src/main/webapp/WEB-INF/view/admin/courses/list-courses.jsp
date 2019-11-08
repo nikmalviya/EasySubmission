@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Courses</h1>
+                    <h1 class="m-0 text-dark hell">Courses</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -48,8 +48,10 @@
                                     <td>${course.courseID}</td>
                                     <td>${course.courseTitle}</td>
                                     <td>
-                                        <a href="/admin/courses/update/${course.courseID}/" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="/admin/courses/delete/${course.courseID}" class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="/admin/courses/update/${course.courseID}/"
+                                           class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="/admin/courses/delete/${course.courseID}"
+                                           class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -87,6 +89,16 @@
             "autoWidth": true,
         });
     });
+    ${message}
+    <c:if test="${not empty success_message}">
+    $(function () {
+        $(document).ready(function () {
+            toastr.success("${success_message}")
+        });
+    });
+    </c:if>
+
+
 </script>
 </body>
 </html>

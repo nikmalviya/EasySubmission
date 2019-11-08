@@ -50,7 +50,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link <c:if test="${f:startsWith(url,'/admin/courses')}">active</c:if>">
+                    <a href="${pageContext.request.contextPath}/admin/courses" class="nav-link <c:if test="${f:startsWith(url,'/admin/courses')}">active</c:if>">
                         <i class="nav-icon fas fa-book-open"></i>
                         <p>
                             Courses

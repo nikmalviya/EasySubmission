@@ -65,6 +65,11 @@
     </sform:form>
 </div>
 <%@include file="../../base-footer.jsp" %>
+<script>
+    $(function () {
+        
+    })
+</script>
 </body>
 </html>
 
