@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark hell">Subjects</h1>
+                    <h1 class="m-0 text-dark hell">Admins</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item active">Subjects</li>
+                        <li class="breadcrumb-item active">Admin Users</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -28,8 +28,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header col-12">
-                        <a href="/admin/subjects/add" class="btn btn-success bg-gradient-success float-right"><i
-                                class="fa fa-plus-circle mr-1"></i> Add New Subject
+                        <a href="/admin/users/admins/add" class="btn btn-success bg-gradient-success float-right"><i
+                                class="fa fa-plus-circle mr-1"></i> Add New Admin
                         </a>
                     </div>
                     <!-- /.card-header -->
@@ -38,23 +38,23 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Title</th>
-                                <th>Course</th>
-                                <th>Professor</th>
+                                <th>Username</th>
+                                <th>Status</th>
+                                <th>Role</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${subject}" var="subject">
+                            <c:forEach items="${admins}" var="admin">
                                 <tr>
-                                    <td>${subject.subjectID}</td>
-                                    <td>${subject.subjectName}</td>
-                                    <td>${subject.course.courseTitle}</td>
-                                    <td>${subject.professor.professorFullName}</td>
+                                    <td>${admin.userID}</td>
+                                    <td>${admin.username}</td>
+                                    <td>${admin.userStatus}</td>
+                                    <td>${admin.userType}</td>
                                     <td>
-                                        <a href="/admin/subjects/update/${subject.subjectID}/"
+                                        <a href="/admin/users/admins/update/${admin.userID}/"
                                            class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="/admin/subjects/delete/${subject.subjectID}"
+                                        <a href="/admin/users/admins/delete/${admin.userID}"
                                            class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
@@ -63,9 +63,10 @@
                             <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>Title</th>
-                                <th>Course</th>
-                                <th>Professor</th>
+                                <th>Username</th>
+                                <th>Status</th>
+                                <th>Role</th>
+                                <th></th>
                             </tr>
                             </tfoot>
                         </table>
@@ -82,8 +83,8 @@
 <!-- /.content-wrapper -->
 
 <%@include file="../../base-footer.jsp" %>
-<script src="../../plugins/datatables/jquery.dataTables.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script src="/plugins/datatables/jquery.dataTables.js"></script>
+<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <script>
     $(function () {
         $('#table').DataTable({

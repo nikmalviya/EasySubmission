@@ -1,6 +1,7 @@
 package com.project.service;
 
 import com.project.entity.User;
+import com.project.entity.UserType;
 import com.project.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ public class UserService {
     public List<User> getUserList() {
         return this.userRepository.findAll();
     }
+    public List<User> getUserListByType(UserType type) {
+        return this.userRepository.findAllByUserType(type);
+    }
 
     public void saveUser(User user) {
         this.userRepository.save(user);
@@ -29,5 +33,8 @@ public class UserService {
 
     public void deleteUser(User user) {
         this.userRepository.delete(user);
+    }
+    public void deleteUserById(int id) {
+        this.userRepository.deleteById(id);
     }
 }

@@ -20,7 +20,7 @@ import javax.validation.Valid;
 public class CourseController {
     final private CourseService courseService;
 
-    CourseController(CourseService courseService) {
+    public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
 
@@ -50,7 +50,7 @@ public class CourseController {
             result.addError(error);
             return "admin/courses/course-form";
         }
-        attrs.addFlashAttribute("success_message","Course Added Successfully..");
+        attrs.addFlashAttribute("success_message", "Course Added Successfully..");
         return "redirect:/admin/courses";
     }
 
@@ -88,14 +88,14 @@ public class CourseController {
             model.addAttribute("updatemode", true);
             return "admin/courses/course-form";
         }
-        attrs.addFlashAttribute("success_message","Course Updated Successfully..");
+        attrs.addFlashAttribute("success_message", "Course Updated Successfully..");
         return "redirect:/admin/courses";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCourse(@PathVariable("id") int id, RedirectAttributes attrs) {
         courseService.deleteCourseById(id);
-        attrs.addFlashAttribute("success_message","Course Deleted Successfully...");
+        attrs.addFlashAttribute("success_message", "Course Deleted Successfully...");
         return "redirect:/admin/courses";
     }
 

@@ -2,7 +2,6 @@ package com.project.service;
 
 import com.project.entity.Course;
 import com.project.repository.CourseRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -11,48 +10,37 @@ import java.util.List;
 
 @Service
 public class CourseService {
-    private CourseRepository courseRepository;
+    final CourseRepository courseRepository;
 
-    public CourseService() {
-    }
-
-    public CourseService(CourseRepository courseRepository) {
+    public CourseService(
+            CourseRepository courseRepository
+    ) {
         this.courseRepository = courseRepository;
     }
 
     public List<Course> getCourseList() {
-        //Sort.by("courseID")
-        try {
-
-            return this.courseRepository.findAll();
-        }
-        catch (Exception ex)
-        {
-            System.out.println("you got null");
-        }
-        return null;
+        return courseRepository.findAll(Sort.by("courseID"));
     }
 
     public Course getCourse(int id) {
-        return this.courseRepository.findById(id).orElse(null);
+        return courseRepository.findById(id).orElse(null);
     }
 
     public void saveCourse(Course course) {
-        this.courseRepository.save(course);
+        courseRepository.save(course);
+    }
+
+    public void deleteCourseById(int id) {
+        courseRepository.deleteById(id);
     }
 
     public void deleteCourse(Course course) {
-        this.courseRepository.delete(course);
-    }
-    public void deleteCourseById(int id){
-        this.courseRepository.deleteById(id);
+        courseRepository.delete(course);
     }
 
-    //function to get all courses as LinkedHashMap objects to directly link it with form:options tag
-    public LinkedHashMap<Integer,String> getCourseOptions(){
-        LinkedHashMap<Integer,String> courseOptions=new LinkedHashMap<>();
-        List<Course> courses=this.getCourseList();
-        courses.forEach(course -> courseOptions.put(course.getCourseID(),course.getCourseTitle()));
-        return courseOptions;
+    public LinkedHashMap<Integer, String> getCourseOptions() {
+        LinkedHashMap options = new LinkedHashMap<>();
+        this.getCourseList().forEach(course -> options.put(course.getCourseID(), course.getCourseTitle()));
+        return options;
     }
 }
