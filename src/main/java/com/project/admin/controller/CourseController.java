@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -38,7 +39,7 @@ public class CourseController {
     }
 
     @PostMapping(path = "/add")
-    public String saveCourse(@Valid @ModelAttribute("course") CourseForm form, BindingResult result, Model model) {
+    public String saveCourse(@Valid @ModelAttribute("course") CourseForm form, BindingResult result, Model model, RedirectAttributes attrs) {
         if (result.hasErrors()) {
             return "admin/courses/course-form";
         }
@@ -49,7 +50,7 @@ public class CourseController {
             result.addError(error);
             return "admin/courses/course-form";
         }
-        model.addAttribute("message", "Course Added Successfully..");
+        attrs.addFlashAttribute("success_message","Course Added Successfully..");
         return "redirect:/admin/courses";
     }
 
@@ -73,7 +74,7 @@ public class CourseController {
     }
 
     @PostMapping("/update/{id}/")
-    public String updateCourse(@Valid @ModelAttribute("course") CourseForm form, BindingResult result, @PathVariable("id") int id,Model model) {
+    public String updateCourse(@Valid @ModelAttribute("course") CourseForm form, BindingResult result, @PathVariable("id") int id, Model model, RedirectAttributes attrs) {
         if (result.hasErrors()) {
             return "admin/courses/course-form";
         }
@@ -87,12 +88,14 @@ public class CourseController {
             model.addAttribute("updatemode", true);
             return "admin/courses/course-form";
         }
-        model.addAttribute("message", "Course Added Successfully..");
+        attrs.addFlashAttribute("success_message","Course Updated Successfully..");
         return "redirect:/admin/courses";
     }
+
     @GetMapping("/delete/{id}")
-    public String deleteCourse(@PathVariable("id") int id){
+    public String deleteCourse(@PathVariable("id") int id, RedirectAttributes attrs) {
         courseService.deleteCourseById(id);
+        attrs.addFlashAttribute("success_message","Course Deleted Successfully...");
         return "redirect:/admin/courses";
     }
 

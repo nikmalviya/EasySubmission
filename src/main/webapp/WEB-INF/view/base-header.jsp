@@ -14,18 +14,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>EASY SUBMISSION</title>
-
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/dist/css/adminlte.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/toastr/toastr.min.css">
+<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">--%>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-<%@include file="navbar.jsp" %>
-<%@include file="sidemenu.jsp" %>
+    <%@include file="navbar.jsp" %>
+    <%@include file="sidemenu.jsp" %>
 
