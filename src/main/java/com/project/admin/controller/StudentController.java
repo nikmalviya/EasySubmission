@@ -125,16 +125,16 @@ public class StudentController {
             ObjectError error = new ObjectError("already_exist_error", "Admin User Already Exists..");
             result.addError(error);
             model.addAttribute("updatemode", true);
-            return "admin/admins/admin-form";
+            return "admin/students/students-form";
         }
-        attrs.addFlashAttribute("success_message", "Admin User Updated Successfully..");
+        attrs.addFlashAttribute("success_message", "Student Updated Successfully..");
         return "redirect:/admin/users/students";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteStudent(@PathVariable("id") int id, RedirectAttributes attrs) {
         studentService.deleteStudentById(id);
-        attrs.addFlashAttribute("success_message", "Admin User Deleted Successfully...");
+        attrs.addFlashAttribute("success_message", "Student Deleted Successfully...");
         return "redirect:/admin/users/students";
     }
 
