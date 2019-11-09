@@ -49,6 +49,8 @@ public class SubjectController {
 
     @PostMapping(path = "/add")
     public String saveCourse(@Valid @ModelAttribute("subject") SubjectForm form, BindingResult result, Model model, RedirectAttributes attrs) {
+        form.setCourseOptions(courseService.getCourseOptions());
+        form.setProfessorOptions(professorService.getProfessorOptions());
         if (result.hasErrors()) {
             model.addAttribute("updatemode", true);
             return "admin/subjects/subject-form";
@@ -78,7 +80,6 @@ public class SubjectController {
 
     @GetMapping(path = "/update/{id}/")
     public String updateSubjectForm(@PathVariable("id") int id, Model model) {
-//        System.out.println(courseId);
         Subject subject = subjectService.getSubject(id);
         SubjectForm subjectForm = new SubjectForm(
                 courseService.getCourseOptions(),
@@ -95,6 +96,8 @@ public class SubjectController {
 
     @PostMapping("/update/{id}/")
     public String updateSubject(@Valid @ModelAttribute("subject") SubjectForm form, BindingResult result, @PathVariable("id") int id, Model model, RedirectAttributes attrs) {
+        form.setCourseOptions(courseService.getCourseOptions());
+        form.setProfessorOptions(professorService.getProfessorOptions());
         if (result.hasErrors()) {
             model.addAttribute("updatemode", true);
             return "admin/subjects/subject-form";

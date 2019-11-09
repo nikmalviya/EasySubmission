@@ -1,7 +1,7 @@
 package com.project.entity;
 
 public enum UserType {
-    ADMIN,
-    STUDENT,
-    PROFESSOR;
+    ROLE_ADMIN,
+    ROLE_STUDENT,
+    ROLE_PROFESSOR;
 }

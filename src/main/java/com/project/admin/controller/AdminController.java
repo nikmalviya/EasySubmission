@@ -41,7 +41,7 @@ public class AdminController {
 
     @GetMapping
     public String admins(Model model) {
-        model.addAttribute("admins", userService.getUserListByType(UserType.ADMIN));
+        model.addAttribute("admins", userService.getUserListByType(UserType.ROLE_ADMIN));
         return "admin/admins/list-admins";
     }
 
@@ -60,7 +60,7 @@ public class AdminController {
             userService.saveUser(new User(
                     form.getUsername(),
                     form.getPassword(),
-                    UserType.ADMIN,
+                    UserType.ROLE_ADMIN,
                     form.getStatus()
             ));
         } catch (DataIntegrityViolationException e) {
@@ -79,23 +79,8 @@ public class AdminController {
         return "admin/admins/admin-form";
     }
 
-    @GetMapping(path = "/update/{id}/")
-    public String updateAdminForm(@PathVariable("id") int id, Model model) {
-//        System.out.println(courseId);
-        User user = userService.getUser(id);
-        AdminForm adminForm = new AdminForm();
-        adminForm.setUsername(user.getUsername());
-        adminForm.setPassword(user.getPassword());
-        adminForm.setConfirmPassword(user.getPassword());
-        adminForm.setStatus(user.getUserStatus());
-        model.addAttribute("adminForm", adminForm);
-        model.addAttribute("updatemode", true);
-        model.addAttribute("id", String.valueOf(id));
-        return "admin/admins/admin-form";
-    }
-
     @PostMapping("/update/{id}/")
-    public String updateCourse(@Valid @ModelAttribute("adminForm") AdminForm form, BindingResult result, @PathVariable("id") int id, Model model, RedirectAttributes attrs) {
+    public String updateAdmin(@Valid @ModelAttribute("adminForm") AdminForm form, BindingResult result, @PathVariable("id") int id, Model model, RedirectAttributes attrs) {
         if (result.hasErrors()) {
             model.addAttribute("updatemode", true);
             return "admin/admins/admin-form";
@@ -111,7 +96,7 @@ public class AdminController {
             User user = userService.getUser(id);
             user.setUsername(form.getUsername());
             user.setPassword(form.getPassword());
-            user.setUserType(UserType.ADMIN);
+            user.setUserType(UserType.ROLE_ADMIN);
             user.setUserStatus(form.getStatus());
             userService.saveUser(user);
         } catch (DataIntegrityViolationException e) {
@@ -122,6 +107,21 @@ public class AdminController {
         }
         attrs.addFlashAttribute("success_message", "Admin User Updated Successfully..");
         return "redirect:/admin/users/admins";
+    }
+
+    @GetMapping(path = "/update/{id}/")
+    public String updateAdminForm(@PathVariable("id") int id, Model model) {
+//        System.out.println(courseId);
+        User user = userService.getUser(id);
+        AdminForm adminForm = new AdminForm();
+        adminForm.setUsername(user.getUsername());
+        adminForm.setPassword(user.getPassword());
+        adminForm.setConfirmPassword(user.getPassword());
+        adminForm.setStatus(user.getUserStatus());
+        model.addAttribute("adminForm", adminForm);
+        model.addAttribute("updatemode", true);
+        model.addAttribute("id", String.valueOf(id));
+        return "admin/admins/admin-form";
     }
 
     @GetMapping("/delete/{id}")
