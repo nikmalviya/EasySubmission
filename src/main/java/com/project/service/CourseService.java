@@ -38,6 +38,10 @@ public class CourseService {
         courseRepository.delete(course);
     }
 
+    public List<Course> getAllCourses(List<Integer> ids){
+        return courseRepository.findAllById(ids);
+    }
+
     public LinkedHashMap<Integer, String> getCourseOptions() {
         LinkedHashMap options = new LinkedHashMap<>();
         this.getCourseList().forEach(course -> options.put(course.getCourseID(), course.getCourseTitle()));

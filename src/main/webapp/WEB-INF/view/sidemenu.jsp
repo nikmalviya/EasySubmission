@@ -85,13 +85,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link ${f:startsWith(url, "/admin/users/students")?'active':''}">
+                            <a href="/admin/users/students" class="nav-link ${f:startsWith(url, "/admin/users/students")?'active':''}">
                                 <i class="fa fa-user-graduate nav-icon"></i>
                                 <p>Students</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link ${f:startsWith(url, "/admin/users/professors")?'active':''}">
+                            <a href="/admin/users/professors" class="nav-link ${f:startsWith(url, "/admin/users/professors")?'active':''}">
                                 <i class="fa fa-chalkboard-teacher nav-icon"></i>
                                 <p>Professors</p>
                             </a>
