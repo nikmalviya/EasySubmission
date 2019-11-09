@@ -30,9 +30,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         //configure the authorizations here
         http.authorizeRequests()
                 .antMatchers("/dist/**").permitAll()
-                .antMatchers("/plugins/**").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers("/plugins/**").permitAll();
+
         http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").permitAll();
                 http.logout().clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/").deleteCookies("JSESSIONID")

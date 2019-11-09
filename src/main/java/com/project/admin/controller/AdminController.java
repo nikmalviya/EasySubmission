@@ -41,7 +41,7 @@ public class AdminController {
 
     @GetMapping
     public String admins(Model model) {
-        model.addAttribute("admins", userService.getUserListByType(UserType.ADMIN));
+        model.addAttribute("admins", userService.getUserListByType(UserType.ROLE_ADMIN));
         return "admin/admins/list-admins";
     }
 
@@ -60,7 +60,7 @@ public class AdminController {
             userService.saveUser(new User(
                     form.getUsername(),
                     form.getPassword(),
-                    UserType.ADMIN,
+                    UserType.ROLE_ADMIN,
                     form.getStatus()
             ));
         } catch (DataIntegrityViolationException e) {
@@ -111,7 +111,7 @@ public class AdminController {
             User user = userService.getUser(id);
             user.setUsername(form.getUsername());
             user.setPassword(form.getPassword());
-            user.setUserType(UserType.ADMIN);
+            user.setUserType(UserType.ROLE_ADMIN);
             user.setUserStatus(form.getStatus());
             userService.saveUser(user);
         } catch (DataIntegrityViolationException e) {
