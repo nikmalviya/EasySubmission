@@ -1,9 +1,13 @@
 package com.project;
 
+import com.project.entity.User;
 import com.project.repository.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 
 @Controller
@@ -55,4 +59,5 @@ public class WelcomeController {
 //        course.getSubjects().forEach(System.out::println);
        return "index";
     }
+
 }

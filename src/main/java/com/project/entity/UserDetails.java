@@ -25,8 +25,9 @@ public class UserDetails implements org.springframework.security.core.userdetail
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+    public Collection<? extends GrantedAuthority> getAuthorities()
+    {
+        return this.authorities;
     }
 
     @Override
@@ -56,6 +57,6 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Override
     public boolean isEnabled() {
-        return active;
+        return this.active;
     }
 }
