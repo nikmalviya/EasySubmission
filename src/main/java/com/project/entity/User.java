@@ -1,6 +1,10 @@
 package com.project.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name="users")
@@ -47,10 +51,7 @@ public class User {
     public String getUsername() {
         return username;
     }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setUsername(String username) { this.username=username; }
 
     public String getPassword() {
         return password;
@@ -86,4 +87,6 @@ public class User {
                 ", userStatus='" + userStatus + '\'' +
                 '}';
     }
+
+
 }

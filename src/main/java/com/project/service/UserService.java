@@ -3,12 +3,16 @@ package com.project.service;
 import com.project.entity.User;
 import com.project.entity.UserType;
 import com.project.repository.UserRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService{
 
     private UserRepository userRepository;
 
@@ -37,4 +41,5 @@ public class UserService {
     public void deleteUserById(int id) {
         this.userRepository.deleteById(id);
     }
-}
+
+    }
