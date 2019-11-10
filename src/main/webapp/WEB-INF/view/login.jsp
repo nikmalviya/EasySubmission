@@ -35,7 +35,7 @@
 
       <sform:form action="${pageContext.request.contextPath}/login" method="post">
         <c:if test="${param.error!=null}">
-          <div class="alert alert-danger"><i>Sorry! invalid username/password</i></div>
+           <div class="alert alert-danger"><i><c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/> </i></div>
         </c:if>
         <div class="input-group mb-3">
           <input type="username" name="username" class="form-control" placeholder="Username">
