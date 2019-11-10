@@ -1,5 +1,7 @@
 package com.project.entity;
 
+import com.project.professor.form.AssignmentForm;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,6 +50,18 @@ public class Assignment {
         this.notes = notes;
         this.filePath = filePath;
     }
+
+    public Assignment(AssignmentForm assignmentForm) {
+        this.assignmentTitle=assignmentForm.getAssignmentTitle();
+        this.postedDate=assignmentForm.getPostdate();
+        this.deadlineDate=assignmentForm.getDeadlinedate();
+        this.subject=assignmentForm.getSubject();
+        this.status=assignmentForm.getAssignmentStatus();
+        this.notes=assignmentForm.getNotes();
+        this.filePath=assignmentForm.getFilePath();
+    }
+
+
 
     public int getAssignmentID() {
         return assignmentID;

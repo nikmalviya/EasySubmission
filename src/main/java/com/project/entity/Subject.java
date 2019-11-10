@@ -1,6 +1,7 @@
 package com.project.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "subjects")
@@ -28,6 +29,13 @@ public class Subject {
     @JoinColumn(name = "professor_id")
     private Professor professor;
 
+    @OneToMany(mappedBy = "subject",cascade = {
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
+    })
+    private List<Assignment> assignments;
     public Subject() {
     }
 
@@ -67,5 +75,13 @@ public class Subject {
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
+    }
+
+    public List<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(List<Assignment> assignments) {
+        this.assignments = assignments;
     }
 }
