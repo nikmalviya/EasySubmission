@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
-    private String userName;
+    private String username;
     private String password;
     private boolean active;
     private List<GrantedAuthority> authorities;
@@ -17,9 +17,9 @@ public class UserDetails implements org.springframework.security.core.userdetail
     }
 
     public UserDetails(User user) {
-        this.userName = userName;
+        this.username = user.getUsername();
         this.password=user.getPassword();
-        this.active=(user.getUserStatus().toString()=="ACTIVE")? true:false;
+        this.active= user.getUserStatus() == UserStatus.ACTIVE;
         this.authorities=new ArrayList<>();
         this.authorities.add(new SimpleGrantedAuthority(user.getUserType().toString()));
     }
@@ -37,7 +37,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override

@@ -36,6 +36,9 @@ public class ProfessorService {
         this.professorRepository.deleteById(id);
     }
 
+    public Professor getProfessor(String username){
+        return professorRepository.getProfessorByUser_Username(username);
+    }
     //function to get all courses in LinkedHashMap to directly link it with form:options tag
     public LinkedHashMap<Integer, String> getProfessorOptions() {
         LinkedHashMap<Integer, String> professorOptions = new LinkedHashMap<>();
