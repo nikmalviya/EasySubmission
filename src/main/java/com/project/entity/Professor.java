@@ -11,6 +11,7 @@ public class Professor {
     private int professorID;
     @Column(name = "professor_name")
     private String professorFullName;
+    @Temporal(TemporalType.DATE)
     @Column(name = "date_of_birth")
     private Date dateofBirth;
     @Column(name = "contact_number")
