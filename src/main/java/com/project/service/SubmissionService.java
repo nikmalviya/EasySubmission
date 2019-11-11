@@ -1,12 +1,14 @@
 package com.project.service;
 
-import com.project.entity.Assignment;
-import com.project.entity.Student;
-import com.project.entity.Submission;
-import com.project.entity.SubmissionStatus;
+import com.project.entity.*;
 import com.project.repository.SubmissionRepository;
+import com.project.student.form.SubmissionForm;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,9 +37,22 @@ public class SubmissionService {
         this.submissionRepository.delete(submission);
     }
 
-    public SubmissionStatus getStatus(Assignment assignment, Student student){
-        Optional<Submission> submission = submissionRepository.findByAssignmentAndStudent(assignment,student);
-        return submission.isPresent()?submission.get().getStatus():SubmissionStatus.NOT_SUBMITTED;
+    public SubmissionStatus getStatus(Assignment assignment, Student student) {
+        Optional<Submission> submission = submissionRepository.findByAssignmentAndStudent(assignment, student);
+        return submission.isPresent() ? submission.get().getStatus() : SubmissionStatus.NOT_SUBMITTED;
+    }
+
+    public void submitAssignment(SubmissionForm form, Subject subject, Assignment assignment, Student student) throws IOException {
+        SubmissionStatus status = new Date().before(assignment.getDeadlineDate()) ? SubmissionStatus.SUBMITTED : SubmissionStatus.LATE_SUBMITTED;
+        String filePath = "src/main/resources/uploads/submissions/file$$"+form.getFile().getOriginalFilename()+"$$-"+subject.getSubjectID()+"-"+new Date().toLocaleString();
+        Submission submission = new Submission(assignment,subject,student,status,0.0f,filePath);
+        File file=new File(filePath);
+        FileOutputStream fos = new FileOutputStream(file);
+        byte[] bytes = form.getFile().getBytes();
+        fos.write(bytes);
+        fos.close();
+        saveSubmission(submission);
+
     }
 }
 

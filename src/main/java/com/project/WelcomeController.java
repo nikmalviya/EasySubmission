@@ -72,7 +72,6 @@ public class WelcomeController {
             session.setAttribute("student",student);
             System.out.println(student.getCourses());
         }
-
         return "index";
     }
 

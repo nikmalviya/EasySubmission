@@ -15,7 +15,7 @@
                         <li class="breadcrumb-item">Courses</li>
                         <li class="breadcrumb-item">${subject.course.courseTitle}</li>
                         <li class="breadcrumb-item">${subject.subjectName}</li>
-                        <li class="breadcrumb-item active">Assignment</li>
+                        <li class="breadcrumb-item active">${assignment.assignmentTitle}</li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +28,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Assignment 1</h3>
+                <h3 class="card-title">${assignment.assignmentTitle}</h3>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -38,7 +38,7 @@
                                 <div class="info-box bg-info">
                                     <div class="info-box-content">
                                         <span class="info-box-text text-center ">Posted On</span>
-                                        <span class="info-box-number text-center mb-0"> 12/12/1212 <br/> 12:12 PM</span>
+                                        <span class="info-box-number text-center mb-0"><fmt:formatDate value="${assignment.postedDate}" type="date"/> </span>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                 <div class="info-box bg-danger">
                                     <div class="info-box-content">
                                         <span class="info-box-text text-center "> Deadline</span>
-                                        <span class="info-box-number text-center  mb-0">12/12/1212 <br/> 12:12 PM</span>
+                                        <span class="info-box-number text-center  mb-0"><fmt:formatDate value="${assignment.deadlineDate}" type="date"/></span>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                     <div class="info-box-content">
                                         <span class="info-box-text text-center">Submission Status</span>
                                         <span class="info-box-number text-center mb-0 ">
-                                            <span class="badge badge-success">Graded</span><br/>
+                                            <s:eval expression="submissionService.getStatus(assignment,sessionScope.student).badgeTag"/>
                                             <span class="info-box-text text-center">Marks 10 / 10</span>
                                             </span>
                                     </div>
@@ -67,38 +67,47 @@
                                 <h5>Questions</h5>
                                 <ol>
                                 <li>Question 1</li>
-                                <li>Question 1</li>
-                                <li>Question 1</li>
-                                <li>Question 1</li>
+                                <li>Question 2</li>
+                                <li>Question 3</li>
+                                <li>Question 4</li>
                                 </ol>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-12">
                                 <h5>Assignment File</h5>
-                                &nbsp;&nbsp;<a href="#"><i class="far fa-fw fa-file-pdf"></i> Assignment 1.pdf</a>
+                                &nbsp;&nbsp;<a href="/files?filePath=${assignment.filePath}"><i class="far fa-fw fa-file-pdf"></i><s:eval expression="assignment.getFileName()"/></a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <h5>Notes</h5>
-                                <p> Please Submit Assignment According to Given Format</p>
+                                <p> ${assignment.notes}</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <h5>Upload Submission File</h5>
-                                <form>
-                                    <div class="form-group">
-                                        <!-- <label for="customFile">Custom File</label> -->
-
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                <sform:form modelAttribute="submissionForm" method="post" enctype="multipart/form-data">
+                                    <s:bind path="file">
+                                        <div class="form-group">
+                                            <label for="file" class="${status.error?'text-danger':''}"> Submission File
+                                            </label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <sform:input type="file" path="file"
+                                                                 cssClass="form-control ${status.error?'is-invalid':''}"/>
+                                                    <label class="custom-file-label" for="file">Choose file</label>
+                                                </div>
+                                            </div>
+                                            <c:if test="${status.error}">
+                                                <small class="text-danger"><sform:errors path="file"/></small>
+                                            </c:if>
                                         </div>
-                                    </div>
+
+                                    </s:bind>
                                     <button class="btn btn-success w-100" type="submit">Submit Assignment</button>
-                                </form>
+                                </sform:form>
                             </div>
                         </div>
                     </div>
