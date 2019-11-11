@@ -24,12 +24,16 @@ public class Assignment {
     @Column(name = "deadline_date")
     private Date deadlineDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = {
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
+    })
     @JoinColumn(name = "subject_id")
     private Subject subject;
-
     @Column(name = "status")
-    private String status;
+    private boolean status;
     @Column(name = "notes")
     private String notes;
     @Column(name = "file_path")
@@ -41,7 +45,7 @@ public class Assignment {
     public Assignment(){
     }
 
-    public Assignment(String assignmentTitle, Date postedDate, Date deadlineDate, Subject subject, String status, String notes, String filePath) {
+    public Assignment(String assignmentTitle, Date postedDate, Date deadlineDate, Subject subject, boolean status, String notes, String filePath) {
         this.assignmentTitle = assignmentTitle;
         this.postedDate = postedDate;
         this.deadlineDate = deadlineDate;
@@ -56,7 +60,7 @@ public class Assignment {
         this.postedDate=assignmentForm.getPostdate();
         this.deadlineDate=assignmentForm.getDeadlinedate();
         this.subject=assignmentForm.getSubject();
-        this.status=assignmentForm.getAssignmentStatus();
+        this.status=("ACTIVE".equals(assignmentForm.getAssignmentStatus()))?true:false;
         this.notes=assignmentForm.getNotes();
         this.filePath=assignmentForm.getFilePath();
     }
@@ -103,11 +107,11 @@ public class Assignment {
         this.subject = subject;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

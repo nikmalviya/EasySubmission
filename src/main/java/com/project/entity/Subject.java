@@ -1,6 +1,7 @@
 package com.project.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -83,5 +84,12 @@ public class Subject {
 
     public void setAssignments(List<Assignment> assignments) {
         this.assignments = assignments;
+    }
+    public void addAssignment(Assignment assignment)
+    {
+        if(this.assignments==null){
+            this.assignments=new ArrayList<>();
+        }
+        this.assignments.add(assignment);
     }
 }

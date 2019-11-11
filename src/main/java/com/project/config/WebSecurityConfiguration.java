@@ -33,6 +33,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/plugins/**").permitAll();
 
         http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/professors/**").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").permitAll();
                 http.logout().clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

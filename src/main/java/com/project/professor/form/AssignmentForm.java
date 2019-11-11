@@ -13,17 +13,16 @@ import java.util.Date;
 public class AssignmentForm {
     @NotBlank(message = "Required")
     private String assignmentTitle;
-    @NotBlank(message = "Required")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @NotNull(message = "Required")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date postdate;
-    @NotBlank(message = "Required")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @NotNull(message = "Required")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date deadlinedate;
     @NotBlank(message = "Required")
     private String assignmentStatus;
     @NotBlank(message = "Required")
     private String notes;
-    @NotBlank(message = "Required")
     private MultipartFile file;
 
     private Subject subject;
@@ -36,10 +35,11 @@ public class AssignmentForm {
         this.assignmentTitle=assignment.getAssignmentTitle();
         this.postdate=assignment.getPostedDate();
         this.deadlinedate=assignment.getDeadlineDate();
-        this.assignmentStatus=assignment.getStatus();
+        this.assignmentStatus=(true==assignment.getStatus())?"ACTIVE":"INACTIVE";
         this.notes=assignment.getNotes();
         this.subject=assignment.getSubject();
     }
+
 
     public String getAssignmentTitle() {
         return assignmentTitle;

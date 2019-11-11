@@ -18,6 +18,10 @@ public class AssignmentValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"assignmentTitle","assignmentTitle.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"assignmentStatus","assignmentStatus.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"notes","notes.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"postdate","postdate.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"deadlinedate","deadlinedate.required");
+
+
         if(assignmentForm.getFile().getSize()==0)
         {
             errors.rejectValue("file","file.empty","File can not be empty");
