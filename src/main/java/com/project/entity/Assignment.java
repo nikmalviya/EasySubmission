@@ -3,7 +3,6 @@ package com.project.entity;
 import com.project.professor.form.AssignmentForm;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -125,5 +124,19 @@ public class Assignment {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "assignmentID=" + assignmentID +
+                ", assignmentTitle='" + assignmentTitle + '\'' +
+                ", postedDate=" + postedDate +
+                ", deadlineDate=" + deadlineDate +
+                ", subject=" + subject +
+                ", status='" + status + '\'' +
+                ", notes='" + notes + '\'' +
+                ", filePath='" + filePath + '\'' +
+                '}';
     }
 }

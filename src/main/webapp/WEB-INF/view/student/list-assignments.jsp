@@ -56,23 +56,24 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${subject.assignments}" var="assignment">
                     <tr>
                         <td>
                             #
                         </td>
                         <td>
                             <a>
-                                Assignment 1
+                                ${assignment.assignmentTitle}
                             </a>
                         </td>
                         <td>
-                            12-12-1212 <br/>12:12PM
+                            ${assignment.postedDate}
                         </td>
                         <td class="project_progress">
-                            12-12-1212 <br/>12:12PM
+                                ${assignment.deadlineDate}
                         </td>
                         <td class="project-state">
-                            <span class="badge badge-warning">Not Submitted</span>
+                            <span class="badge badge-warning"><s:eval expression="submissionService.getStatus(assignment,sessionScope.student)"/></span>
                         </td>
                         <td class="text-bold text-center">
                             -- / 10
@@ -85,93 +86,94 @@
                             </a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            #
-                        </td>
-                        <td>
-                            <a>
-                                Assignment 2
-                            </a>
-                        </td>
-                        <td>
-                            12-12-1212 <br/>12:12PM
-                        </td>
-                        <td class="project_progress">
-                            12-12-1212 <br/>12:12PM
-                        </td>
-                        <td class="project-state">
-                            <span class="badge badge-info">Submitted</span>
-                        </td>
-                        <td class="text-bold text-center">
-                            -- / 10
-                        </td>
-                        <td class="project-actions">
-                            <a class="btn btn-primary btn-sm" href="#">
-                                <i class="fas fa-folder">
-                                </i>
-                                View
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            #
-                        </td>
-                        <td>
-                            <a>
-                                Assignment 3
-                            </a>
-                        </td>
-                        <td>
-                            12-12-1212 <br/>12:12PM
-                        </td>
-                        <td class="project_progress">
-                            12-12-1212 <br/>12:12PM
-                        </td>
-                        <td class="project-state">
-                            <span class="badge badge-danger">Late Submitted</span>
-                        </td>
-                        <td class="text-bold text-center">
-                            -- / 10
-                        </td>
-                        <td class="project-actions">
-                            <a class="btn btn-primary btn-sm" href="#">
-                                <i class="fas fa-folder">
-                                </i>
-                                View
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            #
-                        </td>
-                        <td>
-                            <a>
-                                Assignment 1
-                            </a>
-                        </td>
-                        <td>
-                            12-12-1212 <br/>12:12PM
-                        </td>
-                        <td class="project_progress">
-                            12-12-1212 <br/>12:12PM
-                        </td>
-                        <td class="project-state">
-                            <span class="badge badge-success">Graded</span>
-                        </td>
-                        <td class="text-bold text-center">
-                            10 / 10
-                        </td>
-                        <td class="project-actions">
-                            <a class="btn btn-primary btn-sm" href="#">
-                                <i class="fas fa-folder">
-                                </i>
-                                View
-                            </a>
-                        </td>
-                    </tr>
+                    </c:forEach>
+<%--                    <tr>--%>
+<%--                        <td>--%>
+<%--                            #--%>
+<%--                        </td>--%>
+<%--                        <td>--%>
+<%--                            <a>--%>
+<%--                                Assignment 2--%>
+<%--                            </a>--%>
+<%--                        </td>--%>
+<%--                        <td>--%>
+<%--                            12-12-1212 <br/>12:12PM--%>
+<%--                        </td>--%>
+<%--                        <td class="project_progress">--%>
+<%--                            12-12-1212 <br/>12:12PM--%>
+<%--                        </td>--%>
+<%--                        <td class="project-state">--%>
+<%--                            <span class="badge badge-info">Submitted</span>--%>
+<%--                        </td>--%>
+<%--                        <td class="text-bold text-center">--%>
+<%--                            -- / 10--%>
+<%--                        </td>--%>
+<%--                        <td class="project-actions">--%>
+<%--                            <a class="btn btn-primary btn-sm" href="#">--%>
+<%--                                <i class="fas fa-folder">--%>
+<%--                                </i>--%>
+<%--                                View--%>
+<%--                            </a>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>--%>
+<%--                            #--%>
+<%--                        </td>--%>
+<%--                        <td>--%>
+<%--                            <a>--%>
+<%--                                Assignment 3--%>
+<%--                            </a>--%>
+<%--                        </td>--%>
+<%--                        <td>--%>
+<%--                            12-12-1212 <br/>12:12PM--%>
+<%--                        </td>--%>
+<%--                        <td class="project_progress">--%>
+<%--                            12-12-1212 <br/>12:12PM--%>
+<%--                        </td>--%>
+<%--                        <td class="project-state">--%>
+<%--                            <span class="badge badge-danger">Late Submitted</span>--%>
+<%--                        </td>--%>
+<%--                        <td class="text-bold text-center">--%>
+<%--                            -- / 10--%>
+<%--                        </td>--%>
+<%--                        <td class="project-actions">--%>
+<%--                            <a class="btn btn-primary btn-sm" href="#">--%>
+<%--                                <i class="fas fa-folder">--%>
+<%--                                </i>--%>
+<%--                                View--%>
+<%--                            </a>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>--%>
+<%--                            #--%>
+<%--                        </td>--%>
+<%--                        <td>--%>
+<%--                            <a>--%>
+<%--                                Assignment 1--%>
+<%--                            </a>--%>
+<%--                        </td>--%>
+<%--                        <td>--%>
+<%--                            12-12-1212 <br/>12:12PM--%>
+<%--                        </td>--%>
+<%--                        <td class="project_progress">--%>
+<%--                            12-12-1212 <br/>12:12PM--%>
+<%--                        </td>--%>
+<%--                        <td class="project-state">--%>
+<%--                            <span class="badge badge-success">Graded</span>--%>
+<%--                        </td>--%>
+<%--                        <td class="text-bold text-center">--%>
+<%--                            10 / 10--%>
+<%--                        </td>--%>
+<%--                        <td class="project-actions">--%>
+<%--                            <a class="btn btn-primary btn-sm" href="#">--%>
+<%--                                <i class="fas fa-folder">--%>
+<%--                                </i>--%>
+<%--                                View--%>
+<%--                            </a>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
                     </tbody>
                 </table>
             </div>

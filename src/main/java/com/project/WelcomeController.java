@@ -3,7 +3,10 @@ package com.project;
 import com.project.entity.Professor;
 import com.project.entity.Student;
 import com.project.entity.UserDetails;
-import com.project.repository.*;
+import com.project.repository.CourseRepository;
+import com.project.repository.ProfessorRepository;
+import com.project.repository.SubjectRepository;
+import com.project.repository.UserRepository;
 import com.project.service.ProfessorService;
 import com.project.service.StudentService;
 import org.springframework.security.core.Authentication;
@@ -61,6 +64,7 @@ public class WelcomeController {
         if(auths.stream().anyMatch(a -> a.getAuthority().equals("ROLE_STUDENT"))){
             Student student = studentService.getStudent(details.getUsername());
             session.setAttribute("student_courses", student.getCourses());
+            session.setAttribute("student",student);
             System.out.println(student.getCourses());
         }
 
