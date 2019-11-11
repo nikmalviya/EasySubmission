@@ -13,7 +13,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/professors/${subject}">${subject.subjectTitle}</a></li>
+                        <li class="breadcrumb-item">${subject.course.courseTitle}</li>
+                        <li class="breadcrumb-item active">${subject.subjectName}</li>
                         <li class="breadcrumb-item active">${updatemode?'Update':'Add'} Assignment</li>
                     </ol>
                 </div>

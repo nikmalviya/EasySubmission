@@ -29,6 +29,11 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Assignments</h3>
+                <div class="card-header col-12">
+                    <a href="/professors/${subject.subjectID}/assignments/add" class="btn btn-success bg-gradient-success float-right"><i
+                            class="fa fa-plus-circle mr-1"></i> Add New Assignment
+                    </a>
+                </div>
             </div>
             <div class="card-body p-0">
                 <table class="table table-striped projects">
