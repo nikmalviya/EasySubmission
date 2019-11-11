@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
 <%@page language="java" contentType="text/html" %>
-<%@include file="../base-header.jsp" %>
+<%@include file="../../base-header.jsp" %>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -53,57 +53,22 @@
                                 </c:if>
                             </div>
                         </s:bind>
-
                         <s:bind path="postdate">
                             <div class="form-group">
                                 <label for="postdate" class="${status.error?'text-danger':''}">Post Date</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text ${status.error?'border-danger':''}"><i class="far fa-calendar-alt"></i></span>
-                                    </div>
-                                    <sform:input  path="postdate" showPassword="true"
-                                                  cssClass="form-control ${status.error?'is-invalid':''}" data-inputmask-alias="datetime"
-                                                 data-inputmask-inputformat="dd/mm/yyyy" data-mask="" id="datemask1"/>
-                                </div>
+                                <sform:input path="postdate"
+                                             cssClass="form-control ${status.error?'is-invalid':''}"/>
                                 <c:if test="${status.error}">
                                     <small class="text-danger"><sform:errors path="postdate"/></small>
                                 </c:if>
                             </div>
                         </s:bind>
-
-<%--                        <s:bind path="postdate">--%>
-<%--                            <div class="form-group">--%>
-<%--                                <label for="postdate" class="${status.error?'text-danger':''}">Post Date</label>--%>
-<%--                                <sform:input type="date" path="postdate"--%>
-<%--                                             cssClass="form-control ${status.error?'is-invalid':''}"/>--%>
-<%--                                <c:if test="${status.error}">--%>
-<%--                                    <small class="text-danger"><sform:errors path="postdate"/></small>--%>
-<%--                                </c:if>--%>
-<%--                            </div>--%>
-<%--                        </s:bind>--%>
-<%--                        <s:bind path="deadlinedate">--%>
-<%--                            <div class="form-group">--%>
-<%--                                <label for="deadlinedate" class="${status.error?'text-danger':''}">Deadline Date--%>
-<%--                                </label>--%>
-<%--                                <sform:input type="date" path="deadlinedate"--%>
-<%--                                             cssClass="form-control ${status.error?'is-invalid':''}"--%>
-<%--                                             data-inputmask-inputformat="dd/mm/yyyy"/>--%>
-<%--                                <c:if test="${status.error}">--%>
-<%--                                    <small class="text-danger"><sform:errors path="deadlinedate"/></small>--%>
-<%--                                </c:if>--%>
-<%--                            </div>--%>
-<%--                        </s:bind>--%>
                         <s:bind path="deadlinedate">
                             <div class="form-group">
-                                <label for="deadlinedate" class="${status.error?'text-danger':''}">deadlinedate</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text ${status.error?'border-danger':''}"><i class="far fa-calendar-alt"></i></span>
-                                    </div>
-                                    <sform:input path="deadlinedate" showPassword="true"
-                                                 cssClass="form-control ${status.error?'is-invalid':''}" data-inputmask-alias="datetime"
-                                                 data-inputmask-inputformat="dd/mm/yyyy" data-mask="" id="datemask2"/>
-                                </div>
+                                <label for="deadlinedate" class="${status.error?'text-danger':''}">Deadline Date
+                                </label>
+                                <sform:input path="deadlinedate"
+                                             cssClass="form-control ${status.error?'is-invalid':''}"/>
                                 <c:if test="${status.error}">
                                     <small class="text-danger"><sform:errors path="deadlinedate"/></small>
                                 </c:if>
@@ -175,21 +140,12 @@
         </div>
     </sform:form>
 </div>
-<%@include file="../base-footer.jsp" %>
-<script src="${pageContext.request.contextPath}/plugins/select2/js/select2.full.min.js"></script>
-<script src="${pageContext.request.contextPath}/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
-
+<%@include file="../../base-footer.jsp" %>
 <script>
-    $('.select2bs4').select2({
-        theme: 'bootstrap4'
-    });
-    $('#datemask1').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
-    $('.select2bs4').select2({
-        theme: 'bootstrap4'
-    });
-    $('#datemask2').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
-</script>
+    $(function () {
 
+    })
+</script>
 </body>
 </html>
 
