@@ -34,7 +34,9 @@ CREATE TABLE `assignments` (
   PRIMARY KEY (`assignment_id`),
   KEY `fk_assignments_1_idx` (`subject_id`),
   CONSTRAINT `fk_assignments_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`)
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,7 +82,7 @@ DROP TABLE IF EXISTS `questions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `questions` (
-  `question_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL ,
   `question_text` varchar(200) DEFAULT NULL,
   `assignment_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`question_id`),
@@ -169,11 +171,11 @@ DROP TABLE IF EXISTS `submissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `submissions` (
-  `submission_id` int(11) NOT NULL,
+  `submission_id` int(11) NOT NULL AUTO_INCREMENT,
   `assignment_id` int(11) DEFAULT NULL,
   `subject_id` int(11) DEFAULT NULL,
   `student_id` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
   `marks` float DEFAULT NULL,
   `file_path` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`submission_id`),
@@ -184,6 +186,8 @@ CREATE TABLE `submissions` (
   CONSTRAINT `fk_submissions_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_submissions_3` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE submissions ADD UNIQUE unique_index(assignment_id,subject_id,student_id);
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

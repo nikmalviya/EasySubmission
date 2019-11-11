@@ -66,6 +66,13 @@ public class Assignment {
     }
 
 
+    public List<Submission> getSubmissions() {
+        return submissions;
+    }
+
+    public void setSubmissions(List<Submission> submissions) {
+        this.submissions = submissions;
+    }
 
     public int getAssignmentID() {
         return assignmentID;

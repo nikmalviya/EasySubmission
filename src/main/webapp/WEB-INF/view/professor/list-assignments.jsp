@@ -51,16 +51,16 @@
                             Note
                         </th>
 
-                        <th style="width: 17%">
+                        <th style="width: 13%">
                             Posted On
                         </th>
-                        <th style="width: 17%">
+                        <th style="width: 13%">
                             Deadline
                         </th>
                         <th style="width: 5%" class="text-center">
                             Status
                         </th>
-                        <th style="width: 17%;">
+                        <th style="width: 25%;">
                         </th>
 
                     </tr>
@@ -76,7 +76,7 @@
                         <td><fmt:formatDate value="${assignment.postedDate}" pattern="dd-MMM-yyyy" type="date"/></td>
                         <td><fmt:formatDate value="${assignment.deadlineDate}" pattern="dd-MMM-yyyy" type="date"/></td>
                         <td class="project-state">
-                            <span class="badge badge-${assignment.status == 'ACTIVE'?"success":"danger"}">${assignment.status}</span>
+                            <span class="badge badge-${assignment.status == "ACTIVE"?"success":"danger"}">${assignment.status}</span>
                         </td>
                         <td class="project-actions">
                             <a class="btn btn-primary btn-sm"
@@ -90,6 +90,11 @@
                                 <i class="fas fa-remove">
                                 </i>
                                 Delete
+                            </a>
+                            <a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/professors/submissions/${assignment.assignmentID}">
+                                <i class="fas fa-edit">
+                                </i>
+                                Check
                             </a>
                         </td>
 
