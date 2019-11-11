@@ -41,7 +41,7 @@ public class AssignmentService {
 
     public void saveAssignment(AssignmentForm assignmentForm, Subject subject) throws IOException {
         MultipartFile multiPartFile=assignmentForm.getFile();
-        String url="src/main/webapp/WEB-INF/uploads/assignment/"+multiPartFile.getOriginalFilename()+"-"+subject.getSubjectID()+"-"+new Date().toLocaleString();
+        String url="src/main/resources/uploads/assignments/file$$"+multiPartFile.getOriginalFilename()+"$$-"+subject.getSubjectID()+"-"+new Date().toLocaleString();
         File file=new File(url);
         FileOutputStream fos = new FileOutputStream(file);
         byte[] bytes = multiPartFile.getBytes();
@@ -59,8 +59,7 @@ public class AssignmentService {
     public void updateAssignment(Assignment assignment,AssignmentForm assignmentForm, Subject subject) throws IOException {
 
         MultipartFile multiPartFile=assignmentForm.getFile();
-        String url="src/main/webapp/WEB-INF/uploads/assignment/"+multiPartFile.getOriginalFilename()+"-"+subject.getSubjectID()+"-"+new Date().toString();
-
+        String url="src/main/resources/uploads/assignments/file$$"+multiPartFile.getOriginalFilename()+"$$-"+subject.getSubjectID()+"-"+ new Date().toString();
 //        String url="/home/mananmistry/Projects/SEM5/Final/OnlineSubmissionSystem/src/main/webapp/WEB-INF/uploads/"+multiPartFile.getOriginalFilename();
         File file=new File(url);
         FileOutputStream fos = new FileOutputStream(file);

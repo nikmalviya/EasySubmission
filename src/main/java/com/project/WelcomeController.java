@@ -81,6 +81,7 @@ public class WelcomeController {
         }
 
 
+
         //    Course course = courseRepository.findByCourseTitleLike("Spring%");
 //        Student student = studentRepository.findById(5).orElse(null);
 //        assert student != null;
@@ -116,7 +117,6 @@ public class WelcomeController {
 //
 //        Assignment assignment=this.assignmentService.getAssignment(2);
 //        System.out.println(assignment.getSubmissions());
-
 
         return "index";
     }

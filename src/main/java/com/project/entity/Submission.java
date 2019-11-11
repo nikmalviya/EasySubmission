@@ -10,17 +10,17 @@ public class Submission {
     @Column(name = "submission_id")
     private int submissionID;
     @ManyToOne(cascade = {
-            CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
+            CascadeType.MERGE
     })
     @JoinColumn(name = "assignment_id")
     private Assignment assignment;
     @ManyToOne(cascade = {
-            CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
+            CascadeType.MERGE
     })
     @JoinColumn(name = "subject_id")
     private Subject subject;
     @ManyToOne(cascade = {
-            CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
+            CascadeType.MERGE
     })
     @JoinColumn(name = "student_id")
     private Student student;

@@ -3,6 +3,7 @@ package com.project.entity;
 import com.project.professor.form.AssignmentForm;
 
 import javax.persistence.*;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -135,6 +136,12 @@ public class Assignment {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public String getFileName(){
+        System.out.println(this.filePath);
+        String file = new File(filePath).getName();
+        return file.substring(file.indexOf("$$")+2,file.lastIndexOf("$$"));
     }
 
     @Override

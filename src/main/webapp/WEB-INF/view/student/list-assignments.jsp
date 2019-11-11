@@ -67,19 +67,21 @@
                             </a>
                         </td>
                         <td>
-                            ${assignment.postedDate}
+                            <fmt:formatDate value="${assignment.postedDate}" pattern="dd-MMM-yyyy"/>
                         </td>
                         <td class="project_progress">
-                                ${assignment.deadlineDate}
+                            <fmt:formatDate value="${assignment.deadlineDate}" pattern="dd-MMM-yyyy"/>
                         </td>
                         <td class="project-state">
-                            <span class="badge badge-warning"><s:eval expression="submissionService.getStatus(assignment,sessionScope.student)"/></span>
+
+<%--                            <span class="badge "><s:eval expression="submissionService.getStatus(assignment,sessionScope.student).status"/></span>--%>
+                            <s:eval expression="submissionService.getStatus(assignment,sessionScope.student).badgeTag"/>
                         </td>
                         <td class="text-bold text-center">
                             -- / 10
                         </td>
                         <td class="project-actions">
-                            <a class="btn btn-primary btn-sm" href="#">
+                            <a class="btn btn-primary btn-sm" href="<c:url value="/student/assignments/${subject.subjectID}/${assignment.assignmentID}/"/> ">
                                 <i class="fas fa-folder">
                                 </i>
                                 View
