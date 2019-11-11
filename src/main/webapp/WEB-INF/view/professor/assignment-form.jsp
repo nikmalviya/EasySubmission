@@ -71,28 +71,6 @@
                             </div>
                         </s:bind>
 
-<%--                        <s:bind path="postdate">--%>
-<%--                            <div class="form-group">--%>
-<%--                                <label for="postdate" class="${status.error?'text-danger':''}">Post Date</label>--%>
-<%--                                <sform:input type="date" path="postdate"--%>
-<%--                                             cssClass="form-control ${status.error?'is-invalid':''}"/>--%>
-<%--                                <c:if test="${status.error}">--%>
-<%--                                    <small class="text-danger"><sform:errors path="postdate"/></small>--%>
-<%--                                </c:if>--%>
-<%--                            </div>--%>
-<%--                        </s:bind>--%>
-<%--                        <s:bind path="deadlinedate">--%>
-<%--                            <div class="form-group">--%>
-<%--                                <label for="deadlinedate" class="${status.error?'text-danger':''}">Deadline Date--%>
-<%--                                </label>--%>
-<%--                                <sform:input type="date" path="deadlinedate"--%>
-<%--                                             cssClass="form-control ${status.error?'is-invalid':''}"--%>
-<%--                                             data-inputmask-inputformat="dd/mm/yyyy"/>--%>
-<%--                                <c:if test="${status.error}">--%>
-<%--                                    <small class="text-danger"><sform:errors path="deadlinedate"/></small>--%>
-<%--                                </c:if>--%>
-<%--                            </div>--%>
-<%--                        </s:bind>--%>
                         <s:bind path="deadlinedate">
                             <div class="form-group">
                                 <label for="deadlinedate" class="${status.error?'text-danger':''}">deadlinedate</label>
