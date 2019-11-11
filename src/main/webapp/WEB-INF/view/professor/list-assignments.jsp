@@ -76,7 +76,7 @@
                         <td><fmt:formatDate value="${assignment.postedDate}" pattern="dd-MMM-yyyy" type="date"/></td>
                         <td><fmt:formatDate value="${assignment.deadlineDate}" pattern="dd-MMM-yyyy" type="date"/></td>
                         <td class="project-state">
-                            <span class="badge badge-${assignment.status == 'ACTIVE'?"success":"danger"}">${assignment.status}</span>
+                            <span class="badge badge-${assignment.status == 1?"success":"danger"}">${assignment.status==1? "ACTIVE":"INACTIVE"}</span>
                         </td>
                         <td class="project-actions">
                             <a class="btn btn-primary btn-sm"
