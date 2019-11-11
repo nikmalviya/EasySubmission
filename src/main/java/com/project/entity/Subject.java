@@ -78,6 +78,16 @@ public class Subject {
         this.professor = professor;
     }
 
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "subjectID=" + subjectID +
+                ", subjectName='" + subjectName + '\'' +
+                ", course=" + course +
+                ", professor=" + professor +
+                '}';
+    }
+
     public List<Assignment> getAssignments() {
         return assignments;
     }

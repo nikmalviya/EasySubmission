@@ -2,20 +2,20 @@ package com.project.professor.form;
 
 import com.project.entity.Assignment;
 import com.project.entity.Subject;
+import com.project.validator.FileRequired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class AssignmentForm {
     @NotBlank(message = "Required")
     private String assignmentTitle;
     @NotNull(message = "Required")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date postdate;
+//    @DateTimeFormat(pattern = "dd/MM/yyyy")
+//    private Date postdate;
     @NotNull(message = "Required")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date deadlinedate;
@@ -23,6 +23,7 @@ public class AssignmentForm {
     private String assignmentStatus;
     @NotBlank(message = "Required")
     private String notes;
+    @FileRequired(message = "Assignment File Required")
     private MultipartFile file;
 
     private Subject subject;
@@ -33,9 +34,9 @@ public class AssignmentForm {
 
     public AssignmentForm(Assignment assignment) {
         this.assignmentTitle=assignment.getAssignmentTitle();
-        this.postdate=assignment.getPostedDate();
+//        this.postdate=assignment.getPostedDate();
         this.deadlinedate=assignment.getDeadlineDate();
-        this.assignmentStatus=(true==assignment.getStatus())?"ACTIVE":"INACTIVE";
+        this.assignmentStatus=assignment.getStatus();
         this.notes=assignment.getNotes();
         this.subject=assignment.getSubject();
     }
@@ -49,13 +50,13 @@ public class AssignmentForm {
         this.assignmentTitle = assignmentTitle;
     }
 
-    public Date getPostdate() {
-        return postdate;
-    }
+//    public Date getPostdate() {
+//        return postdate;
+//    }
 
-    public void setPostdate(Date postdate) {
-        this.postdate = postdate;
-    }
+//    public void setPostdate(Date postdate) {
+//        this.postdate = postdate;
+//    }
 
     public Date getDeadlinedate() {
         return deadlinedate;

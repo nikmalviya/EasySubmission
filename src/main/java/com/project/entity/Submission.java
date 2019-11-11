@@ -25,7 +25,8 @@ public class Submission {
     @JoinColumn(name = "student_id")
     private Student student;
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private SubmissionStatus status;
     @Column(name = "marks")
     private Float marks;
     @Column(name = "file_path")
@@ -34,7 +35,7 @@ public class Submission {
     public Submission() {
     }
 
-    public Submission(Assignment assignment, Subject subject, Student student, String status, Float marks, String filePath) {
+    public Submission(Assignment assignment, Subject subject, Student student, SubmissionStatus status, Float marks, String filePath) {
         this.assignment = assignment;
         this.subject = subject;
         this.student = student;
@@ -75,11 +76,11 @@ public class Submission {
         this.student = student;
     }
 
-    public String getStatus() {
+    public SubmissionStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(SubmissionStatus status) {
         this.status = status;
     }
 

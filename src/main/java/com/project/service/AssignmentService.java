@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 
@@ -58,20 +59,21 @@ public class AssignmentService {
     public void updateAssignment(Assignment assignment,AssignmentForm assignmentForm, Subject subject) throws IOException {
 
         MultipartFile multiPartFile=assignmentForm.getFile();
-        String url="/home/mananmistry/Projects/SEM5/Final/OnlineSubmissionSystem/src/main/webapp/WEB-INF/uploads/"+multiPartFile.getOriginalFilename();
+        String url="src/main/resources/uploads/assignments/"+multiPartFile.getOriginalFilename()+"-"+subject.getSubjectID()+"-"+ new Date().toString();
+//        String url="/home/mananmistry/Projects/SEM5/Final/OnlineSubmissionSystem/src/main/webapp/WEB-INF/uploads/"+multiPartFile.getOriginalFilename();
         File file=new File(url);
         FileOutputStream fos = new FileOutputStream(file);
         byte[] bytes = multiPartFile.getBytes();
         fos.write(bytes);
         fos.close();
+        Files.delete(Paths.get(assignment.getFilePath()));
         assignmentForm.setFilePath(url);
         assignmentForm.setSubject(subject);
         assignment.setAssignmentTitle(assignmentForm.getAssignmentTitle());
-        assignment.setPostedDate(assignmentForm.getPostdate());
         assignment.setDeadlineDate(assignmentForm.getDeadlinedate());
         assignment.setFilePath(assignmentForm.getFilePath());
         assignment.setNotes(assignmentForm.getNotes());
-        assignment.setStatus(("ACTIVE".equals(assignmentForm.getAssignmentStatus()))?true:false);
+        assignment.setStatus(assignmentForm.getAssignmentStatus());
         this.saveAssignment(assignment);
 
     }

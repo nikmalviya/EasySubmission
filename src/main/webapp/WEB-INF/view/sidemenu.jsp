@@ -19,7 +19,7 @@
                      alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Admin</a>
+                <a href="#" class="d-block"><security:authentication property="principal.username"/></a>
             </div>
         </div>
 
@@ -51,52 +51,107 @@
                         </li>
                     </ul>
                 </li>
+                <security:authorize access="hasRole('ADMIN')">
+                    <li class="nav-item">
+                        <a href="${pageContext.request.contextPath}/admin/courses"
+                           class="nav-link <c:if test="${f:startsWith(url,'/admin/courses')}">active</c:if>">
+                            <i class="nav-icon fas fa-university"></i>
+                            <p>
+                                Courses
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="${pageContext.request.contextPath}/admin/subjects"
+                           class="nav-link <c:if test="${f:startsWith(url,'/admin/subjects')}">active</c:if>">
+                            <i class="nav-icon fas fa-book-open"></i>
+                            <p>
+                                Subjects
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview ${f:startsWith(url, "/admin/users/")?'menu-open':''}">
+                        <a href="#" class="nav-link ${f:startsWith(url, "/admin/users/")?'active':''}">
+                            <i class="nav-icon fa fa-users"></i>
+                            <p>
+                                Users
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/admin/users/admins"
+                                   class="nav-link ${f:startsWith(url, "/admin/users/admins")?'active':''}">
+                                    <i class="fa fa-user-lock nav-icon"></i>
+                                    <p>Admins</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/admin/users/students"
+                                   class="nav-link ${f:startsWith(url, "/admin/users/students")?'active':''}">
+                                    <i class="fa fa-user-graduate nav-icon"></i>
+                                    <p>Students</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/admin/users/professors"
+                                   class="nav-link ${f:startsWith(url, "/admin/users/professors")?'active':''}">
+                                    <i class="fa fa-chalkboard-teacher nav-icon"></i>
+                                    <p>Professors</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </security:authorize>
+                <security:authorize access="hasRole('PROFESSOR')">
+                    <li class="nav-header">SUBJECTS</li>
+
+                    <c:forEach items="${professor_subjects}" var="subject">
+                        <li class="nav-item">
+                            <a href="/professors/${subject.subjectID}/assignments"
+                               class="nav-link ${f:startsWith(url, "/professors/*/assignments")?'active':''}">
+                                <i class="fa fa-book nav-icon"></i>
+                                <p>${subject.subjectName}</p>
+                            </a>
+                        </li>
+                    </c:forEach>
+
+                    </li>
+                </security:authorize>
+                <security:authorize access="hasRole('STUDENT')">
+                    <li class="nav-header">COURSES</li>
+                    <c:forEach items="${student_courses}" var="course">
+                    <li class="nav-item has-treeview ${f:startsWith(url, "/student/")?'menu-open':''}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-book-open"></i>
+                            <p>
+                                ${course.courseTitle}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-header ml-3">SUBJECTS</li>
+                            <c:forEach items="${course.subjects}" var="subject">
+                                <li class="nav-item">
+                                    <a href="/student/assignments/${subject.subjectID}/"
+                                       class="nav-link ${f:startsWith(url, "/student/assignments/${subject.subjectID}/")?'active':''}">
+                                        <i class="fa fa-book nav-icon"></i>
+                                        <p>${subject.subjectName}</p>
+                                    </a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </li>
+                    </c:forEach>
+                </security:authorize>
                 <li class="nav-item">
-                    <a href="${pageContext.request.contextPath}/admin/courses"
-                       class="nav-link <c:if test="${f:startsWith(url,'/admin/courses')}">active</c:if>">
-                        <i class="nav-icon fas fa-university"></i>
+                    <a href="${pageContext.request.contextPath}/logout"
+                       class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
-                            Courses
+                            Logout
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="${pageContext.request.contextPath}/admin/subjects"
-                       class="nav-link <c:if test="${f:startsWith(url,'/admin/subjects')}">active</c:if>">
-                        <i class="nav-icon fas fa-book-open"></i>
-                        <p>
-                            Subjects
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item has-treeview ${f:startsWith(url, "/admin/users/")?'menu-open':''}">
-                    <a href="#" class="nav-link ${f:startsWith(url, "/admin/users/")?'active':''}">
-                        <i class="nav-icon fa fa-users"></i>
-                        <p>
-                            Users
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/admin/users/admins" class="nav-link ${f:startsWith(url, "/admin/users/admins")?'active':''}">
-                                <i class="fa fa-user-lock nav-icon"></i>
-                                <p>Admins</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/admin/users/students" class="nav-link ${f:startsWith(url, "/admin/users/students")?'active':''}">
-                                <i class="fa fa-user-graduate nav-icon"></i>
-                                <p>Students</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/admin/users/professors" class="nav-link ${f:startsWith(url, "/admin/users/professors")?'active':''}">
-                                <i class="fa fa-chalkboard-teacher nav-icon"></i>
-                                <p>Professors</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
             </ul>
         </nav>
