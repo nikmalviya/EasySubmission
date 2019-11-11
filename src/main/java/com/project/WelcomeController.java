@@ -3,19 +3,10 @@ package com.project;
 import com.project.entity.Professor;
 import com.project.entity.Student;
 import com.project.entity.UserDetails;
-import com.project.entity.Assignment;
-import com.project.entity.Student;
-import com.project.entity.Subject;
-import com.project.entity.Submission;
 import com.project.repository.*;
-import com.project.service.AssignmentService;
-import com.project.service.ProfessorService;
-import com.project.service.StudentService;
-import com.project.service.StudentService;
-import com.project.service.SubjectService;
+import com.project.service.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import com.project.service.SubmissionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,30 +31,32 @@ public class WelcomeController {
     private CourseRepository courseRepository;
     private ProfessorRepository professorRepository;
     private SubjectRepository subjectRepository;
-    final private StudentService studentService;
     final private SubmissionService submissionService;
+
     public WelcomeController(UserRepository userRepository,
                              ProfessorRepository professorRepository,
                              StudentRepository studentRepository,
                              CourseRepository courseRepository,
-                             SubjectRepository subjectRepository
-            , SubjectService subjectService, AssignmentService assignmentService, StudentService studentService, SubmissionService submissionService) {
-            , SubjectService subjectService, AssignmentService assignmentService, ProfessorService professorService, StudentService studentService) {
+                             SubjectRepository subjectRepository,
+                             SubjectService subjectService,
+                             AssignmentService assignmentService,
+                             ProfessorService professorService,
+                             StudentService studentService,
+                             SubmissionService submissionService) {
         this.userRepository = userRepository;
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
         this.professorRepository = professorRepository;
-        this.subjectRepository=subjectRepository;
-        this.subjectService=subjectService;
-        this.assignmentService=assignmentService;
+        this.subjectRepository = subjectRepository;
+        this.subjectService = subjectService;
+        this.assignmentService = assignmentService;
 
         this.studentService = studentService;
-        this.submissionService = submissionService;
-
 
 
         this.professorService = professorService;
 
+        this.submissionService = submissionService;
     }
 //
 //    public WelcomeController(StudentRepository studentRepository) {
@@ -83,12 +76,12 @@ public class WelcomeController {
         if (auths.stream().anyMatch(a -> a.getAuthority().equals("ROLE_STUDENT"))) {
             Student student = studentService.getStudent(details.getUsername());
             session.setAttribute("student_courses", student.getCourses());
-            session.setAttribute("student",student);
+            session.setAttribute("student", student);
             System.out.println(student.getCourses());
         }
 
 
-    //    Course course = courseRepository.findByCourseTitleLike("Spring%");
+        //    Course course = courseRepository.findByCourseTitleLike("Spring%");
 //        Student student = studentRepository.findById(5).orElse(null);
 //        assert student != null;
 //        student.getCourses().add(course);

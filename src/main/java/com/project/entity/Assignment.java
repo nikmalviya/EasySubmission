@@ -3,7 +3,6 @@ package com.project.entity;
 import com.project.professor.form.AssignmentForm;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -66,6 +65,13 @@ public class Assignment {
     }
 
 
+    public List<Submission> getSubmissions() {
+        return submissions;
+    }
+
+    public void setSubmissions(List<Submission> submissions) {
+        this.submissions = submissions;
+    }
 
     public int getAssignmentID() {
         return assignmentID;

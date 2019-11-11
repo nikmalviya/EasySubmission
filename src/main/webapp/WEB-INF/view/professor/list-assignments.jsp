@@ -51,16 +51,16 @@
                             Note
                         </th>
 
-                        <th style="width: 17%">
+                        <th style="width: 13%">
                             Posted On
                         </th>
-                        <th style="width: 17%">
+                        <th style="width: 13%">
                             Deadline
                         </th>
                         <th style="width: 5%" class="text-center">
                             Status
                         </th>
-                        <th style="width: 17%;">
+                        <th style="width: 25%;">
                         </th>
 
                     </tr>
@@ -91,8 +91,6 @@
                                 </i>
                                 Delete
                             </a>
-                            <br/>
-                            <br/>
                             <a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/professors/submissions/${assignment.assignmentID}">
                                 <i class="fas fa-edit">
                                 </i>
