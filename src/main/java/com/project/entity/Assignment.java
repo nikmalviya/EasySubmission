@@ -1,5 +1,7 @@
 package com.project.entity;
 
+import com.project.professor.form.AssignmentForm;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,10 +24,14 @@ public class Assignment {
     @Column(name = "deadline_date")
     private Date deadlineDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = {
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
+    })
     @JoinColumn(name = "subject_id")
     private Subject subject;
-
     @Column(name = "status")
     private String status;
     @Column(name = "notes")
@@ -48,6 +54,18 @@ public class Assignment {
         this.notes = notes;
         this.filePath = filePath;
     }
+
+    public Assignment(AssignmentForm assignmentForm) {
+        this.assignmentTitle=assignmentForm.getAssignmentTitle();
+        this.postedDate= new Date();
+        this.deadlineDate=assignmentForm.getDeadlinedate();
+        this.subject=assignmentForm.getSubject();
+        this.status=assignmentForm.getAssignmentStatus();
+        this.notes=assignmentForm.getNotes();
+        this.filePath=assignmentForm.getFilePath();
+    }
+
+
 
     public int getAssignmentID() {
         return assignmentID;
@@ -111,5 +129,19 @@ public class Assignment {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "assignmentID=" + assignmentID +
+                ", assignmentTitle='" + assignmentTitle + '\'' +
+                ", postedDate=" + postedDate +
+                ", deadlineDate=" + deadlineDate +
+                ", subject=" + subject +
+                ", status='" + status + '\'' +
+                ", notes='" + notes + '\'' +
+                ", filePath='" + filePath + '\'' +
+                '}';
     }
 }

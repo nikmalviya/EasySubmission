@@ -108,8 +108,8 @@
 
                     <c:forEach items="${professor_subjects}" var="subject">
                         <li class="nav-item">
-                            <a href="/admin/users/admins"
-                               class="nav-link ${f:startsWith(url, "/admin/users/admins")?'active':''}">
+                            <a href="/professors/${subject.subjectID}/assignments"
+                               class="nav-link ${f:startsWith(url, "/professors/*/assignments")?'active':''}">
                                 <i class="fa fa-book nav-icon"></i>
                                 <p>${subject.subjectName}</p>
                             </a>
@@ -130,11 +130,11 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-header">SUBJECTS</li>
+                            <li class="nav-header ml-3">SUBJECTS</li>
                             <c:forEach items="${course.subjects}" var="subject">
                                 <li class="nav-item">
-                                    <a href="/admin/users/admins"
-                                       class="nav-link ${f:startsWith(url, "/admin/users/admins")?'active':''}">
+                                    <a href="/student/assignments/${subject.subjectID}/"
+                                       class="nav-link ${f:startsWith(url, "/student/assignments/${subject.subjectID}/")?'active':''}">
                                         <i class="fa fa-book nav-icon"></i>
                                         <p>${subject.subjectName}</p>
                                     </a>
