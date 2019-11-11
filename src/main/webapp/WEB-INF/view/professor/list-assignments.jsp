@@ -106,6 +106,13 @@
                                 </i>
                                 Delete
                             </a>
+                            <br/>
+                            <br/>
+                            <a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/professors/submissions/${assignment.assignmentID}">
+                                <i class="fas fa-edit">
+                                </i>
+                                Check
+                            </a>
                         </td>
 
 <%--                        <td class="project-actions">--%>
