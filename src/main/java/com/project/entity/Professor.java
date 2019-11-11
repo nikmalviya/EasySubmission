@@ -2,8 +2,10 @@ package com.project.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
 @Entity
-@Table(name ="professors")
+@Table(name = "professors")
 public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +23,15 @@ public class Professor {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
+    @OneToMany(mappedBy = "professor", cascade = {
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
+    })
+    private List<Subject> subjects;
 
-    public Professor(){
+    public Professor() {
     }
 
     public Professor(String professorFullName, Date dateofBirth, String contactNumber, String address, User user) {
@@ -79,5 +88,13 @@ public class Professor {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 }

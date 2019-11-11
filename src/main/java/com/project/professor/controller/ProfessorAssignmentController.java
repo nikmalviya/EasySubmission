@@ -6,13 +6,14 @@ import com.project.professor.form.AssignmentForm;
 import com.project.service.AssignmentService;
 import com.project.service.ProfessorService;
 import com.project.service.SubjectService;
-import com.project.validator.AssignmentValidator;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.validation.BindingResult;spring.datasource.url=jdbc:mysql://localhost:3306/online_grading_system
+spring.datasource.username=root
+spring.datasource.password=Sherlock@1718
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,7 @@ public class ProfessorAssignmentController {
     final private ProfessorService professorService;
     final private AssignmentService assignmentService;
     final private SubjectService subjectService;
+
     public ProfessorAssignmentController(ProfessorService professorService, AssignmentService assignmentService, SubjectService subjectService1) {
         this.professorService = professorService;
         this.assignmentService = assignmentService;
@@ -41,14 +43,10 @@ public class ProfessorAssignmentController {
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
-        try { StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-            dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-            dataBinder.setValidator(new AssignmentValidator());
-        }
-        catch (Exception e)
-        {
 
-        }
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+       // dataBinder.setValidator(new AssignmentValidator());
     }
 
 
@@ -68,7 +66,7 @@ public class ProfessorAssignmentController {
 
 
     @GetMapping(path = "{id}/assignments/add")
-    public String AssignmentForm(Model model,@PathVariable("id") int id) {
+    public String AssignmentForm(Model model, @PathVariable("id") int id) {
         AssignmentForm assignmentForm = new AssignmentForm();
         model.addAttribute("assignmentForm", assignmentForm);
         Subject subject=this.subjectService.getSubject(id);
@@ -78,10 +76,9 @@ public class ProfessorAssignmentController {
     }
 
     @PostMapping(path = "{id}/assignments/add")
-    public String saveAssignment(@Valid @ModelAttribute("assignmentForm") AssignmentForm assignmentForm, BindingResult result, Model model, RedirectAttributes attrs,@PathVariable("id") int id) throws IOException {
-        Subject subject=this.subjectService.getSubject(id);
+    public String saveAssignment(@Valid @ModelAttribute("assignmentForm") AssignmentForm assignmentForm, BindingResult result, Model model, RedirectAttributes attrs, @PathVariable("id") int id) throws IOException {
+        Subject subject = this.subjectService.getSubject(id);
         if (result.hasErrors()) {
-
             return "/professor/assignment-form";
         }
         try {

@@ -2,6 +2,7 @@ package com.project.professor.form;
 
 import com.project.entity.Assignment;
 import com.project.entity.Subject;
+import com.project.validator.FileRequired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +24,7 @@ public class AssignmentForm {
     private String assignmentStatus;
     @NotBlank(message = "Required")
     private String notes;
+    @FileRequired(message = "Assignment File Required")
     private MultipartFile file;
 
     private Subject subject;

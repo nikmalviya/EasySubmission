@@ -23,7 +23,7 @@
     </section>
 
 
-    <sform:form cssClass="content" method="post" modelAttribute="assignmentForm" enctype="multipart/form-data" >
+    <sform:form cssClass="content" method="post" modelAttribute="assignmentForm" enctype="multipart/form-data">
 
         <div class="row ">
             <div class="col-md-6 offset-2">
@@ -74,7 +74,7 @@
 
                         <s:bind path="deadlinedate">
                             <div class="form-group">
-                                <label for="deadlinedate" class="${status.error?'text-danger':''}">deadlinedate</label>
+                                <label for="deadlinedate" class="${status.error?'text-danger':''}">Deadline Date</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text ${status.error?'border-danger':''}"><i class="far fa-calendar-alt"></i></span>
@@ -110,8 +110,8 @@
                             <div class="form-group">
                                 <label for="notes" class="${status.error?'text-danger':''}">Notes
                                 </label>
-                                <sform:input path="notes"
-                                             cssClass="form-control ${status.error?'is-invalid':''}"/>
+                                <sform:textarea path="notes"
+                                                cssClass="form-control ${status.error?'is-invalid':''}"/>
                                 <c:if test="${status.error}">
                                     <small class="text-danger"><sform:errors path="deadlinedate"/></small>
                                 </c:if>
@@ -127,9 +127,6 @@
                                         <sform:input type="file" path="file"
                                                      cssClass="form-control ${status.error?'is-invalid':''}"/>
                                         <label class="custom-file-label" for="file">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="">Upload</span>
                                     </div>
                                 </div>
                                 <c:if test="${status.error}">
@@ -155,9 +152,8 @@
     </sform:form>
 </div>
 <%@include file="../base-footer.jsp" %>
-<script src="${pageContext.request.contextPath}/plugins/select2/js/select2.full.min.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script>
     $('.select2bs4').select2({
         theme: 'bootstrap4'
@@ -167,6 +163,10 @@
         theme: 'bootstrap4'
     });
     $('#datemask2').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
+    $(document).ready(function () {
+        bsCustomFileInput.init();
+
+    });
 </script>
 
 </body>
