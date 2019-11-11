@@ -68,11 +68,11 @@ public class AssignmentController {
                                    @PathVariable("assignmentId") int assignmentId,
                                    @SessionAttribute("student") Student student,
                                    Model model) throws IOException {
+        model.addAttribute("subject", subjectService.getSubject(subjectId));
+        model.addAttribute("submissionService", submissionService);
+        model.addAttribute("assignment", assignmentService.getAssignment(assignmentId));
         if (result.hasErrors()) {
             System.out.println("Hello world");
-            model.addAttribute("subject", subjectService.getSubject(subjectId));
-            model.addAttribute("submissionService", submissionService);
-            model.addAttribute("assignment", assignmentService.getAssignment(assignmentId));
             return "student/assignment-detail";
         }
         submissionService.submitAssignment(submissionForm,

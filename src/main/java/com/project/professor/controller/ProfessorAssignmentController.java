@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -121,10 +122,11 @@ public class ProfessorAssignmentController {
             this.assignmentService.updateAssignment(assignment, assignmentForm, subject);
 
         } catch (DataIntegrityViolationException | IOException e) {
+            System.out.println(e);
             ObjectError error = new ObjectError("already_exist_error", "Subject Already Exists..");
             result.addError(error);
             model.addAttribute("updatemode", true);
-            return "";
+            return "/professor/assignment-form";
         }
         attrs.addFlashAttribute("success_message", "Subject Updated Successfully..");
         return "redirect:/professors/" + subjectid + "/assignments";
@@ -133,7 +135,9 @@ public class ProfessorAssignmentController {
     @GetMapping("{subjectid}/assignments/delete/{id}")
     public String deleteSubject(@PathVariable("subjectid") int subjectId, @PathVariable("id") int id, RedirectAttributes attrs) throws IOException {
         Assignment assignment = this.assignmentService.getAssignment(id);
-        Files.delete(Paths.get(assignment.getFilePath()));
+        try{
+            Files.delete(Paths.get(assignment.getFilePath()));
+        } catch (NoSuchFileException ignored){}
         this.assignmentService.deleteAssignment(assignment);
         attrs.addFlashAttribute("success_message", "Subject Deleted Successfully...");
         return "redirect:/professors/" + subjectId + "/assignments";
