@@ -30,7 +30,8 @@
             <div class="card-header">
                 <h3 class="card-title">Assignments</h3>
                 <div class="card-header col-12">
-                    <a href="/professors/${subject.subjectID}/assignments/add" class="btn btn-success bg-gradient-success float-right"><i
+                    <a href="/professors/${subject.subjectID}/assignments/add"
+                       class="btn btn-success bg-gradient-success float-right"><i
                             class="fa fa-plus-circle mr-1"></i> Add New Assignment
                     </a>
                 </div>
@@ -42,24 +43,24 @@
                         <th style="width: 1%">
                             #
                         </th>
-                        <th style="width: 24%">
+                        <th style="width: 19%">
                             Assignment
                         </th>
 
-                        <th style="width: 24%">
+                        <th style="width: 20%">
                             Note
                         </th>
 
-                        <th style="width: 15%">
+                        <th style="width: 17%">
                             Posted On
                         </th>
-                        <th style="width: 14%">
+                        <th style="width: 17%">
                             Deadline
-                        </th >
-                        <th style="width: 1%" class="text-center">
+                        </th>
+                        <th style="width: 5%" class="text-center">
                             Status
                         </th>
-                        <th style="width: 8%;">
+                        <th style="width: 17%;">
                         </th>
 
                     </tr>
@@ -67,171 +68,37 @@
                     <tbody>
                     <tr>
 
-<%--                        <c:forEach items="${admins}" var="admin">--%>
-<%--                    <tr>--%>
-<%--                        <td>${admin.userID}</td>--%>
-<%--                        <td>${admin.username}</td>--%>
-<%--                        <td>${admin.userStatus}</td>--%>
-<%--                        <td>${admin.userType}</td>--%>
-<%--                        <td>--%>
-<%--                            <a href="/admin/users/admins/update/${admin.userID}/"--%>
-<%--                               class="btn btn-warning btn-sm">Edit</a>--%>
-<%--                            <a href="/admin/users/admins/delete/${admin.userID}"--%>
-<%--                               class="btn btn-danger btn-sm">Delete</a>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    </c:forEach>--%>
-
-<c:forEach items="${assignments}" var="assignment">
-    <tr>
-    <td>${assignment.assignmentID}</td>
-    <td>${assignment.assignmentTitle}</td>
-    <td>${assignment.notes}</td>
-    <td>${assignment.postedDate}</td>
-    <td>${assignment.deadlineDate}</td>
-    <td class="project-state">
-        <span class="badge badge-${assignment.status?"success":"warning"}">${assignment.status?"ACTIVE":"INACTIVE"}</span>
-    </td>
+                        <c:forEach items="${assignments}" var="assignment">
+                    <tr>
+                        <td>${assignment.assignmentID}</td>
+                        <td>${assignment.assignmentTitle}</td>
+                        <td>${assignment.notes}</td>
+                        <td><fmt:formatDate value="${assignment.postedDate}" pattern="dd-MMM-yyyy" type="date"/></td>
+                        <td><fmt:formatDate value="${assignment.deadlineDate}" pattern="dd-MMM-yyyy" type="date"/></td>
+                        <td class="project-state">
+                            <span class="badge badge-${assignment.status == 'ACTIVE'?"success":"danger"}">${assignment.status}</span>
+                        </td>
                         <td class="project-actions">
-                            <a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/professors/${subject.subjectID}/assignments/update/${assignment.assignmentID}">
+                            <a class="btn btn-primary btn-sm"
+                               href="${pageContext.request.contextPath}/professors/${subject.subjectID}/assignments/update/${assignment.assignmentID}">
                                 <i class="fas fa-edit">
                                 </i>
                                 Edit
                             </a>
-                            <br/>
-                            <br/>
-
-                            <a class="btn btn-danger btn-sm" href="${pageContext.request.contextPath}/professors/${subject.subjectID}/assignments/delete/${assignment.assignmentID}">
+                            <a class="btn btn-danger btn-sm"
+                               href="${pageContext.request.contextPath}/professors/${subject.subjectID}/assignments/delete/${assignment.assignmentID}">
                                 <i class="fas fa-remove">
                                 </i>
                                 Delete
                             </a>
                         </td>
 
-<%--                        <td class="project-actions">--%>
+                            <%--                        <td class="project-actions">--%>
 
-<%--                        </td>--%>
+                            <%--                        </td>--%>
 
                     </tr>
-</c:forEach>
-<%--                        <td>--%>
-<%--                            #--%>
-<%--                        </td>--%>
-<%--                        <td>--%>
-<%--                            <a>--%>
-<%--                                Assignment 1--%>
-<%--                            </a>--%>
-<%--                        </td>--%>
-<%--                        <td>--%>
-<%--                            notes--%>
-<%--                        </td>--%>
-<%--                        <td class="project_progress">--%>
-<%--                            12-12-1212 <br/>12:12PM--%>
-<%--                        </td>--%>
-<%--                        <td class="project-state">--%>
-<%--                            <span class="badge badge-warning">Not Submitted</span>--%>
-<%--                        </td>--%>
-<%--                                                <td class="project-state">--%>
-<%--                                                    <span class="badge badge-${assignmentStatus?"success":"warning"}warning">Not Submitted</span>--%>
-<%--                                                </td>--%>
-<%--                        <td class="text-bold text-center">--%>
-<%--                            -- / 10--%>
-<%--                        </td>--%>
-<%--                        <td class="project-actions">--%>
-<%--                            <a class="btn btn-primary btn-sm" href="#">--%>
-<%--                                <i class="fas fa-folder">--%>
-<%--                                </i>--%>
-<%--                                View--%>
-<%--                            </a>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>--%>
-<%--                            #--%>
-<%--                        </td>--%>
-<%--                        <td>--%>
-<%--                            <a>--%>
-<%--                                Assignment 2--%>
-<%--                            </a>--%>
-<%--                        </td>--%>
-<%--                        <td>--%>
-<%--                            12-12-1212 <br/>12:12PM--%>
-<%--                        </td>--%>
-<%--                        <td class="project_progress">--%>
-<%--                            12-12-1212 <br/>12:12PM--%>
-<%--                        </td>--%>
-<%--                        <td class="project-state">--%>
-<%--                            <span class="badge badge-info">Submitted</span>--%>
-<%--                        </td>--%>
-<%--                        <td class="text-bold text-center">--%>
-<%--                            -- / 10--%>
-<%--                        </td>--%>
-<%--                        <td class="project-actions">--%>
-<%--                            <a class="btn btn-primary btn-sm" href="#">--%>
-<%--                                <i class="fas fa-folder">--%>
-<%--                                </i>--%>
-<%--                                View--%>
-<%--                            </a>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>--%>
-<%--                            #--%>
-<%--                        </td>--%>
-<%--                        <td>--%>
-<%--                            <a>--%>
-<%--                                Assignment 3--%>
-<%--                            </a>--%>
-<%--                        </td>--%>
-<%--                        <td>--%>
-<%--                            12-12-1212 <br/>12:12PM--%>
-<%--                        </td>--%>
-<%--                        <td class="project_progress">--%>
-<%--                            12-12-1212 <br/>12:12PM--%>
-<%--                        </td>--%>
-<%--                        <td class="project-state">--%>
-<%--                            <span class="badge badge-danger">Late Submitted</span>--%>
-<%--                        </td>--%>
-<%--                        <td class="text-bold text-center">--%>
-<%--                            -- / 10--%>
-<%--                        </td>--%>
-<%--                        <td class="project-actions">--%>
-<%--                            <a class="btn btn-primary btn-sm" href="#">--%>
-<%--                                <i class="fas fa-folder">--%>
-<%--                                </i>--%>
-<%--                                View--%>
-<%--                            </a>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>--%>
-<%--                            #--%>
-<%--                        </td>--%>
-<%--                        <td>--%>
-<%--                            <a>--%>
-<%--                                Assignment 1--%>
-<%--                            </a>--%>
-<%--                        </td>--%>
-<%--                        <td>--%>
-<%--                            12-12-1212 <br/>12:12PM--%>
-<%--                        </td>--%>
-<%--                        <td class="project_progress">--%>
-<%--                            12-12-1212 <br/>12:12PM--%>
-<%--                        </td>--%>
-<%--                        <td class="project-state">--%>
-<%--                            <span class="badge badge-success">Submitted</span>--%>
-<%--                        </td>--%>
-<%--                        <td class="text-bold text-center">--%>
-<%--                            10 / 10--%>
-<%--                        </td>--%>
-<%--                        <td class="project-actions">--%>
-<%--                            <a class="btn btn-primary btn-sm" href="/${assignment.assignmentId}/update">--%>
-<%--                                <i class="fas fa-edit">--%>
-<%--                                </i>--%>
-<%--                                View--%>
-<%--                            </a>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>

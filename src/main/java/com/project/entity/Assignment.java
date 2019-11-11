@@ -32,7 +32,7 @@ public class Assignment {
     @JoinColumn(name = "subject_id")
     private Subject subject;
     @Column(name = "status")
-    private boolean status;
+    private String status;
     @Column(name = "notes")
     private String notes;
     @Column(name = "file_path")
@@ -44,7 +44,7 @@ public class Assignment {
     public Assignment(){
     }
 
-    public Assignment(String assignmentTitle, Date postedDate, Date deadlineDate, Subject subject, boolean status, String notes, String filePath) {
+    public Assignment(String assignmentTitle, Date postedDate, Date deadlineDate, Subject subject, String status, String notes, String filePath) {
         this.assignmentTitle = assignmentTitle;
         this.postedDate = postedDate;
         this.deadlineDate = deadlineDate;
@@ -56,10 +56,10 @@ public class Assignment {
 
     public Assignment(AssignmentForm assignmentForm) {
         this.assignmentTitle=assignmentForm.getAssignmentTitle();
-        this.postedDate=assignmentForm.getPostdate();
+        this.postedDate= new Date();
         this.deadlineDate=assignmentForm.getDeadlinedate();
         this.subject=assignmentForm.getSubject();
-        this.status=("ACTIVE".equals(assignmentForm.getAssignmentStatus()))?true:false;
+        this.status=assignmentForm.getAssignmentStatus();
         this.notes=assignmentForm.getNotes();
         this.filePath=assignmentForm.getFilePath();
     }
@@ -106,11 +106,11 @@ public class Assignment {
         this.subject = subject;
     }
 
-    public boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

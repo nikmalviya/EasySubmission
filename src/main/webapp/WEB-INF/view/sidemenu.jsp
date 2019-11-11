@@ -108,8 +108,8 @@
 
                     <c:forEach items="${professor_subjects}" var="subject">
                         <li class="nav-item">
-                            <a href="/admin/users/admins"
-                               class="nav-link ${f:startsWith(url, "/admin/users/admins")?'active':''}">
+                            <a href="/professors/${subject.subjectID}/assignments"
+                               class="nav-link ${f:startsWith(url, "/professors/*/assignments")?'active':''}">
                                 <i class="fa fa-book nav-icon"></i>
                                 <p>${subject.subjectName}</p>
                             </a>

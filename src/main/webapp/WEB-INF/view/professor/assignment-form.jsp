@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>${updatemode?'Update':'Add New'} Assignment</h1>
+                    <h1>${updatemode?'Update':'Add New'} Assignment for ${subject.subjectName}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -55,22 +55,22 @@
                             </div>
                         </s:bind>
 
-                        <s:bind path="postdate">
-                            <div class="form-group">
-                                <label for="postdate" class="${status.error?'text-danger':''}">Post Date</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text ${status.error?'border-danger':''}"><i class="far fa-calendar-alt"></i></span>
-                                    </div>
-                                    <sform:input  path="postdate" showPassword="true"
-                                                  cssClass="form-control ${status.error?'is-invalid':''}" data-inputmask-alias="datetime"
-                                                 data-inputmask-inputformat="dd/mm/yyyy" data-mask="" id="datemask1"/>
-                                </div>
-                                <c:if test="${status.error}">
-                                    <small class="text-danger"><sform:errors path="postdate"/></small>
-                                </c:if>
-                            </div>
-                        </s:bind>
+<%--                        <s:bind path="postdate">--%>
+<%--                            <div class="form-group">--%>
+<%--                                <label for="postdate" class="${status.error?'text-danger':''}">Post Date</label>--%>
+<%--                                <div class="input-group">--%>
+<%--                                    <div class="input-group-prepend">--%>
+<%--                                        <span class="input-group-text ${status.error?'border-danger':''}"><i class="far fa-calendar-alt"></i></span>--%>
+<%--                                    </div>--%>
+<%--                                    <sform:input  path="postdate" showPassword="true"--%>
+<%--                                                  cssClass="form-control ${status.error?'is-invalid':''}" data-inputmask-alias="datetime"--%>
+<%--                                                 data-inputmask-inputformat="dd/mm/yyyy" data-mask="" id="datemask1"/>--%>
+<%--                                </div>--%>
+<%--                                <c:if test="${status.error}">--%>
+<%--                                    <small class="text-danger"><sform:errors path="postdate"/></small>--%>
+<%--                                </c:if>--%>
+<%--                            </div>--%>
+<%--                        </s:bind>--%>
 
                         <s:bind path="deadlinedate">
                             <div class="form-group">
@@ -155,13 +155,7 @@
 <script src="${pageContext.request.contextPath}/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script>
-    $('.select2bs4').select2({
-        theme: 'bootstrap4'
-    });
     $('#datemask1').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
-    $('.select2bs4').select2({
-        theme: 'bootstrap4'
-    });
     $('#datemask2').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
     $(document).ready(function () {
         bsCustomFileInput.init();
