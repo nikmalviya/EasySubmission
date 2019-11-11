@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `assignments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `assignments` (
-  `assignment_id` int(11) NOT NULL,
+  `assignment_id` int(11) NOT NULL AUTO_INCREMENT,
   `assignment_title` varchar(45) DEFAULT NULL,
   `posted_date` date DEFAULT NULL,
   `deadline_date` date DEFAULT NULL,
