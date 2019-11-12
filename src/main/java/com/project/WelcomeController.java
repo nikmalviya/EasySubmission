@@ -70,14 +70,12 @@ public class WelcomeController {
         UserDetails details = (UserDetails) authentication.getPrincipal();
         if (auths.stream().anyMatch(a -> a.getAuthority().equals("ROLE_PROFESSOR"))) {
             Professor professor = professorService.getProfessor(details.getUsername());
-            System.out.println(professor.getSubjects());
             session.setAttribute("professor_subjects", professor.getSubjects());
         }
         if (auths.stream().anyMatch(a -> a.getAuthority().equals("ROLE_STUDENT"))) {
             Student student = studentService.getStudent(details.getUsername());
             session.setAttribute("student_courses", student.getCourses());
             session.setAttribute("student", student);
-            System.out.println(student.getCourses());
         }
 
 

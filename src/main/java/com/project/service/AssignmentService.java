@@ -51,7 +51,6 @@ public class AssignmentService {
         assignmentForm.setFilePath(url);
         assignmentForm.setSubject(subject);
         Assignment assignment = new Assignment(assignmentForm);
-        System.out.println("Save Assignment from service");
         this.saveAssignment(assignment);
 
 

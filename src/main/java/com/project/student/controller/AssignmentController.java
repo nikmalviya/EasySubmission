@@ -72,7 +72,7 @@ public class AssignmentController {
         model.addAttribute("submissionService", submissionService);
         model.addAttribute("assignment", assignmentService.getAssignment(assignmentId));
         if (result.hasErrors()) {
-            System.out.println("Hello world");
+
             return "student/assignment-detail";
         }
         submissionService.submitAssignment(submissionForm,
@@ -93,7 +93,6 @@ public class AssignmentController {
         model.addAttribute("submissionService", submissionService);
         model.addAttribute("assignment", assignmentService.getAssignment(assignmentId));
         if (result.hasErrors()) {
-            System.out.println("Hello world");
             return "student/assignment-detail";
         }
         submissionService.updateAssignment(submissionForm,
