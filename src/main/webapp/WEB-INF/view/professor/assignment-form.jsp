@@ -145,7 +145,7 @@
         </div>
         <div class="row">
             <div class="col-6 offset-2">
-                <a href="/professors" class="btn btn-secondary">Cancel</a>
+                <a href="/professors/${subject.subjectID}/assignments" class="btn btn-secondary">Cancel</a>
                 <input type="submit" value="${updatemode?'Update':'Add'} Assignment" class="btn btn-success float-right">
             </div>
         </div>

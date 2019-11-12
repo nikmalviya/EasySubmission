@@ -31,10 +31,7 @@ public class Subject {
     private Professor professor;
 
     @OneToMany(mappedBy = "subject",cascade = {
-            CascadeType.MERGE,
-            CascadeType.DETACH,
-            CascadeType.REFRESH,
-            CascadeType.PERSIST
+            CascadeType.ALL,
     })
     private List<Assignment> assignments;
     public Subject() {
