@@ -67,6 +67,10 @@ public class AssignmentService {
         byte[] bytes = multiPartFile.getBytes();
         fos.write(bytes);
         fos.close();
+        try {
+            Files.delete(Paths.get(assignment.getFilePath()));
+        } catch (NoSuchFileException ignored) {
+        }
         assignmentForm.setFilePath(url);
         assignmentForm.setSubject(subject);
         assignment.setAssignmentTitle(assignmentForm.getAssignmentTitle());
@@ -75,10 +79,6 @@ public class AssignmentService {
         assignment.setNotes(assignmentForm.getNotes());
         assignment.setStatus(assignmentForm.getAssignmentStatus());
         this.saveAssignment(assignment);
-        try {
-            Files.delete(Paths.get(assignment.getFilePath()));
-        } catch (NoSuchFileException ignored) {
-        }
 
     }
 

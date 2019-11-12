@@ -139,7 +139,6 @@ public class Assignment {
     }
 
     public String getFileName(){
-        System.out.println(this.filePath);
         String file = new File(filePath).getName();
         return file.substring(file.indexOf("$$")+2,file.lastIndexOf("$$"));
     }
