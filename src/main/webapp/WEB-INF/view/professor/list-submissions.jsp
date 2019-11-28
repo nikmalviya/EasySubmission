@@ -1,7 +1,5 @@
 <%@page language="java" contentType="text/html" %>
 <%@include file="../base-header.jsp" %>
-
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -42,7 +40,7 @@
                                 <th>Student Name</th>
                                 <th>Status</th>
                                 <th>Marks</th>
-                                <th>Download</th>
+                                <th>Evaluation</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -55,8 +53,8 @@
 <%--                                    <td>${submission.marks}</td>--%>
 
                                     <td>
-                                        <a href=#
-                                           class="btn btn-primary btn-sm">Download</a>
+                                        <a href="${pageContext.request.contextPath}/professors/submissions/${assignmentId}/${submission.submissionID}"
+                                           class="btn btn-primary btn-sm">Evaluate</a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -66,8 +64,8 @@
                                 <th>Roll No.</th>
                                 <th>Student Name</th>
                                 <th>Status</th>
-                                <th>makrs</th>
-                                <th>Download</th>
+                                <th>Marks</th>
+                                <th>Evaluate</th>
                             </tr>
                             </tfoot>
                         </table>
