@@ -1,6 +1,5 @@
 package com.project.repository;
 
-import com.project.admin.form.ProfessorForm;
 import com.project.entity.Professor;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -72,7 +72,7 @@ public class AssignmentController {
         model.addAttribute("submissionService", submissionService);
         model.addAttribute("assignment", assignmentService.getAssignment(assignmentId));
         if (result.hasErrors()) {
-            System.out.println("Hello world");
+
             return "student/assignment-detail";
         }
         submissionService.submitAssignment(submissionForm,
@@ -81,5 +81,24 @@ public class AssignmentController {
                 student);
 
         return "student/assignment-detail";
+    }
+    @PostMapping("/{subjectId}/{assignmentId}/update")
+    public String updateAssignment(@Valid @ModelAttribute("submissionForm") SubmissionForm submissionForm,
+                                   BindingResult result,
+                                   @PathVariable("subjectId") int subjectId,
+                                   @PathVariable("assignmentId") int assignmentId,
+                                   @SessionAttribute("student") Student student,
+                                   Model model) throws IOException {
+        model.addAttribute("subject", subjectService.getSubject(subjectId));
+        model.addAttribute("submissionService", submissionService);
+        model.addAttribute("assignment", assignmentService.getAssignment(assignmentId));
+        if (result.hasErrors()) {
+            return "student/assignment-detail";
+        }
+        submissionService.updateAssignment(submissionForm,
+                subjectService.getSubject(subjectId),
+                assignmentService.getAssignment(assignmentId),
+                student);
+        return String.format("redirect:/student/assignments/%d/%d/",subjectId,assignmentId);
     }
 }

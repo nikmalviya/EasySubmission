@@ -1,20 +1,14 @@
 package com.project.service;
 
 import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.project.config.S3Client;
-import org.hibernate.exception.DataException;
-import org.joda.time.DateTime;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.time.DateTimeException;
-import java.util.Date;
 
 @Service
 public class StorageService {
@@ -25,11 +19,12 @@ public class StorageService {
     }
 
     public File convertMultipartFile(MultipartFile multipartFile) throws IOException {
-        File file = new File(multipartFile.getOriginalFilename());
-        FileOutputStream fos = new FileOutputStream(file);
-        fos.write(multipartFile.getBytes());
-        fos.close();
-        return file;
+        System.out.println(multipartFile.getOriginalFilename());
+        return File.createTempFile(multipartFile.getOriginalFilename(), ".tmp");
+//        FileOutputStream fos = new FileOutputStream(file);
+//        fos.write(multipartFile.getBytes());
+//        fos.close();
+//        return file;
     }
     //it is general method to delete assignments and submissions file from s3
 //    public String deleteFile(String fileUrl) {
@@ -42,30 +37,24 @@ public class StorageService {
 
 
     //this method will upload the file on s3 bucket and will return url path of file
-    public String uploadAssignment(MultipartFile multipartfile,String assignmentTitle,Integer subjectId,Integer professorId) throws IOException {
-        File file = this.convertMultipartFile(multipartfile);
+    public String uploadAssignment(MultipartFile multipartfile) throws IOException {
+        return uploadFile(multipartfile);
+    }
 
+    private String uploadFile(MultipartFile multipartfile) throws IOException {
+        File file = this.convertMultipartFile(multipartfile);
         String bucketName = s3ClientService.getBucketName();
-        String endPoint=s3ClientService.getEndPoint();
-        String fileName ="SubjectId-"+subjectId+"-ProfessorId-"+professorId+"-"+file.getName().trim().replaceAll("\\s+","")+new Date().toString().replaceAll("\\:","").replaceAll("\\s","");
-        String filePath=endPoint+"/"+fileName;
-s3ClientService.getAmazonS3().putObject(new PutObjectRequest(s3ClientService.getBucketName(),fileName,file)
+        String endPoint = s3ClientService.getEndPoint();
+        String fileName = RandomString.make() + "-" + multipartfile.getOriginalFilename();
+        String filePath = endPoint + "/" + fileName;
+        s3ClientService.getAmazonS3().putObject(new PutObjectRequest(s3ClientService.getBucketName(), fileName, file)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
 
         return filePath;
     }
 
-    public String uploadSubmission(MultipartFile multipartfile,String studentID,String assignmentId,Integer subjectId,Integer submissionId) throws IOException {
-        File file = this.convertMultipartFile(multipartfile);
-
-        String bucketName = s3ClientService.getBucketName();
-        String endPoint=s3ClientService.getEndPoint();
-        String fileName ="SubjectId-"+subjectId+"-StudentId-"+submissionId+"-"+file.getName().trim().replaceAll("\\s+","")+new Date().toString().replaceAll("\\:","").replaceAll("\\s","");
-        String filePath=endPoint+"/"+fileName;
-        s3ClientService.getAmazonS3().putObject(new PutObjectRequest(s3ClientService.getBucketName(),fileName,file)
-                .withCannedAcl(CannedAccessControlList.PublicRead));
-
-        return filePath;
+    public String uploadSubmission(MultipartFile multipartfile) throws IOException {
+        return uploadFile(multipartfile);
     }
 
 }
