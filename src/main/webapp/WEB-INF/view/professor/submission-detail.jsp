@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Assignment Submission of ${subject.subjectName}</h1>
+                    <h1>Submissions of </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -71,7 +71,7 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <h5>Submission File</h5>
-                                &nbsp;&nbsp;<a href="/files?filePath=${submission.filePath}"><i class="far fa-fw fa-file-pdf"></i>Download</a>
+                                &nbsp;&nbsp;<a href="${submission.filePath}"><i class="far fa-fw fa-file-pdf"></i>${submission.fileName}</a>
                             </div>
                         </div>
 

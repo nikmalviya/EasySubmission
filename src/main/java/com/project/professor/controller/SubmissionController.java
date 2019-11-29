@@ -35,6 +35,7 @@ public class SubmissionController {
         List<Submission> submissions = assignment.getSubmissions();
         System.out.println(submissions);
         model.addAttribute("assignmentId",assignmentId);
+        model.addAttribute("subject",assignment.getSubject());
         model.addAttribute("submissions", submissions);
         return "/professor/list-submissions";
     }
