@@ -13,7 +13,6 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item">Courses</li>
                         <li class="breadcrumb-item">${subject.course.courseTitle}</li>
                         <li class="breadcrumb-item active">${subject.subjectName}</li>
                     </ol>
@@ -70,7 +69,7 @@
 
                         <c:forEach items="${assignments}" var="assignment">
                     <tr>
-                        <td>${assignment.assignmentID}</td>
+                        <td>#</td>
                         <td>${assignment.assignmentTitle}</td>
                         <td>${assignment.notes}</td>
                         <td><fmt:formatDate value="${assignment.postedDate}" pattern="dd-MMM-yyyy" type="date"/></td>

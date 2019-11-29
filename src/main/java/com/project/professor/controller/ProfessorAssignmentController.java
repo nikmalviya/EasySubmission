@@ -93,6 +93,7 @@ public class ProfessorAssignmentController {
     @GetMapping(path = "{subjectid}/assignments/update/{id}")
     public String updateSubjectForm(Model model, @PathVariable("subjectid") int subjectId, @PathVariable("id") int id) throws IOException {
         Subject subject = subjectService.getSubject(subjectId);
+        model.addAttribute("subject",subject);
         Assignment assignment = this.assignmentService.getAssignment(id);
         AssignmentForm assignmentForm = new AssignmentForm(this.assignmentService.getAssignment(id));
 //

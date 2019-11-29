@@ -65,10 +65,6 @@ public class AssignmentService {
         assignment.setNotes(assignmentForm.getNotes());
         assignment.setStatus(assignmentForm.getAssignmentStatus());
         this.saveAssignment(assignment);
-        try {
-            Files.delete(Paths.get(assignment.getFilePath()));
-        } catch (NoSuchFileException ignored) {
-        }
 
     }
 

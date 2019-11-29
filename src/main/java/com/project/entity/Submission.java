@@ -1,6 +1,7 @@
 package com.project.entity;
 
 import javax.persistence.*;
+import java.io.File;
 
 @Entity
 @Table(name = "submissions")
@@ -98,5 +99,10 @@ public class Submission {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public String getFileName(){
+        String file = new File(filePath).getName();
+        return file.substring(file.indexOf("$$")+2,file.lastIndexOf("$$"));
     }
 }
