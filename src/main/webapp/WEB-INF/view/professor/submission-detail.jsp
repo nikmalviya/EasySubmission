@@ -77,7 +77,7 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <h5>Set Makrs</h5>
+                                <h5>Set Marks</h5>
 
                                 <sform:form modelAttribute="submissionForm" method="post">
                                     <s:bind path="marks">
