@@ -44,12 +44,6 @@ public class AssignmentService {
         assignmentForm.setSubject(subject);
         Assignment assignment = new Assignment(assignmentForm);
         this.saveAssignment(assignment);
-//        String url = "src/main/resources/uploads/assignments/file$$" + multiPartFile.getOriginalFilename() + "$$-" + subject.getSubjectID() + "-" + new Date().toLocaleString();
-//        File file = new File(url);
-//        FileOutputStream fos = new FileOutputStream(file);
-//        byte[] bytes = multiPartFile.getBytes();
-//        fos.write(bytes);
-//        fos.close();
     }
 
     public void updateAssignment(Assignment assignment, AssignmentForm assignmentForm, Subject subject) throws IOException {

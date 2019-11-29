@@ -1,7 +1,5 @@
 <%@page language="java" contentType="text/html" %>
 <%@include file="../base-header.jsp" %>
-
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -9,13 +7,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
+                    <h1>Submissions for ${subject.subjectName}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item">Courses</li>
-                        <li class="breadcrumb-item">Subject</li>
-                        <li class="breadcrumb-item active">Assignment</li>
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item">${subject.course.courseTitle}</li>
+                        <li class="breadcrumb-item">${subject.subjectName}</li>
+                        <li class="breadcrumb-item active">Submissions</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -40,9 +39,9 @@
                             <tr>
                                 <th>Roll No.</th>
                                 <th>Student Name</th>
-                                <th>Status</th>
-                                <th>Marks</th>
-                                <th>Download</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Marks</th>
+                                <th>Evaluation</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -50,13 +49,13 @@
                                 <tr>
                                     <td>${submission.student.studentID}</td>
                                     <td>${submission.student.studentFullName}</td>
-                                    <td>${submission.status}</td>
-                                    <td>${submission.marks}</td>
+                                    <td class="text-center">${submission.status.badgeTag}</td>
+                                    <td class="text-center"><b>${submission.marks.intValue()} / 10</b></td>
 <%--                                    <td>${submission.marks}</td>--%>
 
                                     <td>
-                                        <a href=#
-                                           class="btn btn-primary btn-sm">Download</a>
+                                        <a href="${pageContext.request.contextPath}/professors/submissions/${assignmentId}/${submission.submissionID}"
+                                           class="btn btn-primary btn-sm">Evaluate</a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -66,8 +65,8 @@
                                 <th>Roll No.</th>
                                 <th>Student Name</th>
                                 <th>Status</th>
-                                <th>makrs</th>
-                                <th>Download</th>
+                                <th>Marks</th>
+                                <th>Evaluate</th>
                             </tr>
                             </tfoot>
                         </table>
