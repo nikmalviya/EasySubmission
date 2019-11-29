@@ -8,15 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Paths;
 import java.util.List;
 
 @Service
 public class AssignmentService {
     private AssignmentRepository assignmentRepository;
     final private StorageService storageService;
+
     public AssignmentService(AssignmentRepository assignmentRepository, StorageService storageService) {
         this.assignmentRepository = assignmentRepository;
         this.storageService = storageService;
@@ -40,7 +38,7 @@ public class AssignmentService {
 
     public void saveAssignment(AssignmentForm assignmentForm, Subject subject) throws IOException {
         MultipartFile multiPartFile = assignmentForm.getFile();
-        String fileUrl=this.storageService.uploadAssignment(multiPartFile,assignmentForm.getAssignmentTitle(),subject.getSubjectID(),subject.getProfessor().getProfessorID());
+        String fileUrl = this.storageService.uploadAssignment(multiPartFile);
         System.out.println(fileUrl);
         assignmentForm.setFilePath(fileUrl);
         assignmentForm.setSubject(subject);
@@ -56,7 +54,7 @@ public class AssignmentService {
 
     public void updateAssignment(Assignment assignment, AssignmentForm assignmentForm, Subject subject) throws IOException {
         MultipartFile multiPartFile = assignmentForm.getFile();
-        String fileUrl=this.storageService.uploadAssignment(multiPartFile,assignmentForm.getAssignmentTitle(),subject.getSubjectID(),subject.getProfessor().getProfessorID());
+        String fileUrl = this.storageService.uploadAssignment(multiPartFile);
         assignmentForm.setFilePath(fileUrl);
         assignmentForm.setSubject(subject);
         assignment.setAssignmentTitle(assignmentForm.getAssignmentTitle());
