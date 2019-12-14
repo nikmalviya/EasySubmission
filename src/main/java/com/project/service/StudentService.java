@@ -1,20 +1,36 @@
 package com.project.service;
 
-import com.project.entity.Student;
+import com.project.entity.*;
 import com.project.repository.StudentRepository;
+import com.sun.org.apache.xerces.internal.impl.dv.XSSimpleType;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 public class StudentService {
 
     private StudentRepository studentRepository;
+    @Autowired
+    private CourseService courseService;
 
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
-
 
     public List<Student> getStudentList() {
         return this.studentRepository.findAll();
@@ -36,7 +52,13 @@ public class StudentService {
         this.studentRepository.deleteById(id);
     }
 
-    public Student getStudent(String username){
+    public Student getStudent(String username) {
         return studentRepository.getStudentByUser_Username(username);
     }
+//
+//    public void saveStudents(MultipartFile excelFile) throws IOException, InvalidFormatException, ParseException {
+//
+//  ]      }
+
+
 }

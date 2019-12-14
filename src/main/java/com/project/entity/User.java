@@ -1,10 +1,13 @@
 package com.project.entity;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.streaming.SXSSFRow;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Iterator;
 
 @Entity
 @Table(name="users")
@@ -30,9 +33,18 @@ public class User {
     @Column(name="status")
     private UserStatus userStatus;
 
-    public User(){
+    public User() {
     }
 
+    public User(Cell cell, Iterator<Cell> cellIterator){
+        this.setUsername(cell.getStringCellValue());
+        cell = cellIterator.next();
+        this.setPassword(cell.getStringCellValue());
+        this.setUserType(UserType.ROLE_STUDENT);
+        cell = cellIterator.next();
+        this.setUserStatus(cell.getStringCellValue().equals("ACTIVE") ? UserStatus.ACTIVE : UserStatus.INACTIVE);//ACTIVE,INACTIVE
+
+    }
     public User(String username, String password, UserType userType, UserStatus userStatus) {
         this.username = username;
         this.password = password;

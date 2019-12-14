@@ -1,8 +1,15 @@
 package com.project.entity;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.streaming.SXSSFRow;
+
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -47,6 +54,21 @@ public class Student {
     public Student() {
     }
 
+    public Student(Cell cell, Iterator<Cell> cellIterator) throws ParseException {
+        cell = cellIterator.next();
+        this.setStudentFullName(cell.getStringCellValue());
+        cell = cellIterator.next();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String date = cell.getStringCellValue();
+        Date dob = dateFormat.parse(date);
+        this.setDateOfBirth(dob);
+        cell = cellIterator.next();
+        Double val=cell.getNumericCellValue();
+        this.setContactNumber(String.format("%.0f",val));
+        cell = cellIterator.next();
+        this.setAddress(cell.getStringCellValue());
+        this.setUser(user);
+    }
     public Student(String studentFullName, Date dateOfBirth, String contactNumber, String address) {
         this.studentFullName = studentFullName;
         this.dateOfBirth = dateOfBirth;

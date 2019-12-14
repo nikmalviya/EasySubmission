@@ -26,6 +26,9 @@ public class CourseService {
         return courseRepository.findById(id).orElse(null);
     }
 
+    public Course getCourse(String coursetitles){
+        return courseRepository.findByCourseTitleLike(coursetitles);
+    }
     public void saveCourse(Course course) {
         courseRepository.save(course);
     }
