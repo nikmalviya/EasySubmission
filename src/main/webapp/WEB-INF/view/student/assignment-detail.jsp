@@ -12,7 +12,6 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item">Courses</li>
                         <li class="breadcrumb-item">${subject.course.courseTitle}</li>
                         <li class="breadcrumb-item">${subject.subjectName}</li>
                         <li class="breadcrumb-item active">${assignment.assignmentTitle}</li>
@@ -93,7 +92,7 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <h5>Assignment File</h5>
-                                &nbsp;&nbsp;<a href="/files?filePath=${assignment.filePath}"><i
+                                &nbsp;&nbsp;<a href="${assignment.filePath}"><i
                                     class="far fa-fw fa-file-pdf"></i><s:eval
                                     expression="assignment.getFileName()"/></a>
                             </div>
@@ -112,7 +111,7 @@
                                         <i class="far fa-fw fa-file-pdf"></i>
                                         <s:eval expression="submissionService.getFileName(assignment,sessionScope.student)"/>
                                     </h6>
-                                    <a href="/files?filePath=<s:eval expression="submissionService.getFilePath(assignment,sessionScope.student)"/>" class="btn btn-info btn-sm w-100" style="text-decoration: none">
+                                    <a href="<s:eval expression="submissionService.getFilePath(assignment,sessionScope.student)"/>" class="btn btn-info btn-sm w-100" style="text-decoration: none">
                                     <i class="fas fa-eye"></i> View Submitted File
                                     </a>
                                 </div>

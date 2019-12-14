@@ -101,8 +101,8 @@ public class Submission {
         this.filePath = filePath;
     }
 
-    public String getFileName(){
+    public String getFileName() {
         String file = new File(filePath).getName();
-        return file.substring(file.indexOf("$$")+2,file.lastIndexOf("$$"));
+        return file.substring(file.indexOf("-") + 1);
     }
 }

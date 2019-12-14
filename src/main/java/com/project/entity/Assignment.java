@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "assignments")
 public class Assignment {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "assignment_id")
@@ -18,7 +18,7 @@ public class Assignment {
     @Column(name = "assignment_title")
     private String assignmentTitle;
 
-    @Column(name="posted_date")
+    @Column(name = "posted_date")
     private Date postedDate;
 
     @Column(name = "deadline_date")
@@ -38,11 +38,12 @@ public class Assignment {
     private String notes;
     @Column(name = "file_path")
     private String filePath;
-    @OneToMany(mappedBy = "assignment",cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "assignment", cascade = {CascadeType.ALL})
     private List<Question> questions;
-    @OneToMany(mappedBy = "assignment",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "assignment", cascade = CascadeType.ALL)
     private List<Submission> submissions;
-    public Assignment(){
+
+    public Assignment() {
     }
 
     public Assignment(String assignmentTitle, Date postedDate, Date deadlineDate, Subject subject, String status, String notes, String filePath) {
@@ -56,13 +57,13 @@ public class Assignment {
     }
 
     public Assignment(AssignmentForm assignmentForm) {
-        this.assignmentTitle=assignmentForm.getAssignmentTitle();
-        this.postedDate= new Date();
-        this.deadlineDate=assignmentForm.getDeadlinedate();
-        this.subject=assignmentForm.getSubject();
-        this.status=assignmentForm.getAssignmentStatus();
-        this.notes=assignmentForm.getNotes();
-        this.filePath=assignmentForm.getFilePath();
+        this.assignmentTitle = assignmentForm.getAssignmentTitle();
+        this.postedDate = new Date();
+        this.deadlineDate = assignmentForm.getDeadlinedate();
+        this.subject = assignmentForm.getSubject();
+        this.status = assignmentForm.getAssignmentStatus();
+        this.notes = assignmentForm.getNotes();
+        this.filePath = assignmentForm.getFilePath();
     }
 
 
@@ -138,9 +139,9 @@ public class Assignment {
         this.filePath = filePath;
     }
 
-    public String getFileName(){
+    public String getFileName() {
         String file = new File(filePath).getName();
-        return file.substring(file.indexOf("$$")+2,file.lastIndexOf("$$"));
+        return file.substring(file.indexOf("-") + 1);
     }
 
     @Override
