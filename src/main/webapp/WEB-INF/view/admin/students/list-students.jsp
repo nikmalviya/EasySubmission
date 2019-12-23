@@ -28,6 +28,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header col-12">
+                        <a href="/admin/users/students/add/excel" class="btn btn-success bg-gradient-success float-right"><i
+                                class="fa fa-plus-circle mr-1"></i> Add New Students With File
+                        </a>
+
                         <a href="/admin/users/students/add" class="btn btn-success bg-gradient-success float-right"><i
                                 class="fa fa-plus-circle mr-1"></i> Add New Student
                         </a>

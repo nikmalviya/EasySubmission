@@ -37,7 +37,7 @@
                         <table id="table" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>Roll No.</th>
+                                <tfah>Roll No.</tfah>
                                 <th>Student Name</th>
                                 <th class="text-center">Status</th>
                                 <th class="text-center">Marks</th>
